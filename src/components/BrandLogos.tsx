@@ -16,8 +16,10 @@ export function MammaRomaLogo({
       <div className={`flex items-center justify-center select-none ${className}`}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/images/logos/logo-mamma-roma.svg"
+          src="/images/logos/logo-mamma-roma.webp"
           alt="Mamma Roma Logo"
+          width={120}
+          height={48}
           className="h-full w-auto object-contain max-h-12 transition-transform duration-300 group-hover:scale-105"
           onError={() => setHasError(true)}
         />
@@ -82,8 +84,10 @@ export function SetteColliLogo({
       <div className={`flex items-center justify-center select-none ${className}`}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/images/logos/logo-sette-colli.svg"
+          src="/images/logos/logo-sette-colli.webp"
           alt="Sette Colli Logo"
+          width={120}
+          height={48}
           className="h-full w-auto object-contain max-h-12 transition-transform duration-300 group-hover:scale-105"
           onError={() => setHasError(true)}
         />

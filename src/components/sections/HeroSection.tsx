@@ -12,11 +12,24 @@ export default function HeroSection() {
     ? "/images/heroes/hero-mamma-roma.webp"
     : "/images/heroes/hero-sette-colli.webp";
 
-  const [heroImgSrc, setHeroImgSrc] = React.useState(brand.hero.heroImage || defaultFallbackHero);
+  const getCleanHeroUrl = React.useCallback(
+    (url?: string) => {
+      if (!url) return defaultFallbackHero;
+      if (url.startsWith("/images/uploads/") && url.endsWith(".png")) {
+        return url.replace(/\.png$/, ".webp");
+      }
+      return url;
+    },
+    [defaultFallbackHero]
+  );
+
+  const [heroImgSrc, setHeroImgSrc] = React.useState(() =>
+    getCleanHeroUrl(brand.hero.heroImage || defaultFallbackHero)
+  );
 
   React.useEffect(() => {
-    setHeroImgSrc(brand.hero.heroImage || defaultFallbackHero);
-  }, [brand.hero.heroImage, defaultFallbackHero]);
+    setHeroImgSrc(getCleanHeroUrl(brand.hero.heroImage || defaultFallbackHero));
+  }, [brand.hero.heroImage, defaultFallbackHero, getCleanHeroUrl]);
 
   const heroRef = React.useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });

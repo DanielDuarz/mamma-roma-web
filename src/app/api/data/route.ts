@@ -22,13 +22,44 @@ function getNetlifyStore() {
   return null;
 }
 
+function autoMigrateImageUrls<T>(obj: T): T {
+  if (typeof obj === "string") {
+    if (obj.startsWith("/images/uploads/") && obj.endsWith(".png")) {
+      return obj.replace(/\.png$/, ".webp") as unknown as T;
+    }
+    if (obj.startsWith("/images/dishes/") && obj.endsWith(".jpg")) {
+      return obj.replace(/\.jpg$/, ".webp") as unknown as T;
+    }
+    if (obj === "/images/heroes/mr-story.jpg") {
+      return "/images/heroes/mr-story.webp" as unknown as T;
+    }
+    if (obj === "/images/logos/logo-group.png") {
+      return "/images/logos/logo-group.webp" as unknown as T;
+    }
+    return obj;
+  }
+  if (Array.isArray(obj)) {
+    return obj.map(autoMigrateImageUrls) as unknown as T;
+  }
+  if (obj && typeof obj === "object") {
+    const res: Record<string, unknown> = {};
+    for (const [k, v] of Object.entries(obj)) {
+      res[k] = autoMigrateImageUrls(v);
+    }
+    return res as unknown as T;
+  }
+  return obj;
+}
+
 async function getStoredData() {
   const store = getNetlifyStore();
   if (store) {
     try {
       const blobData = await store.get(BLOB_KEY, { type: "json" });
       if (blobData && typeof blobData === "object" && (blobData as Record<string, unknown>)["mamma-roma"]) {
-        return blobData;
+        const migrated = autoMigrateImageUrls(blobData);
+        store.setJSON(BLOB_KEY, migrated).catch(() => {});
+        return migrated;
       }
     } catch (err) {
       console.warn("Could not read from Netlify Blobs, falling back to local file:", err);
@@ -38,29 +69,32 @@ async function getStoredData() {
   try {
     const fileContent = await fs.readFile(DATA_FILE_PATH, "utf-8");
     const parsed = JSON.parse(fileContent);
+    const migrated = autoMigrateImageUrls(parsed);
     // If Netlify store is active but was empty, prime it with current data
-    if (store && parsed) {
-      store.setJSON(BLOB_KEY, parsed).catch(() => {});
+    if (store && migrated) {
+      store.setJSON(BLOB_KEY, migrated).catch(() => {});
     }
-    return parsed;
+    return migrated;
   } catch {
     // If file doesn't exist yet, initialize it with BRANDS
+    const migratedBrands = autoMigrateImageUrls(BRANDS);
     try {
-      await fs.writeFile(DATA_FILE_PATH, JSON.stringify(BRANDS, null, 2), "utf-8");
+      await fs.writeFile(DATA_FILE_PATH, JSON.stringify(migratedBrands, null, 2), "utf-8");
     } catch {
       // ignore in read-only environment
     }
     if (store) {
-      store.setJSON(BLOB_KEY, BRANDS).catch(() => {});
+      store.setJSON(BLOB_KEY, migratedBrands).catch(() => {});
     }
-    return BRANDS;
+    return migratedBrands;
   }
 }
 
 export async function GET() {
   try {
     const data = await getStoredData();
-    return NextResponse.json(data);
+    const migrated = autoMigrateImageUrls(data);
+    return NextResponse.json(migrated);
   } catch (error) {
     return NextResponse.json({ error: "Error reading site data", details: String(error) }, { status: 500 });
   }
@@ -73,11 +107,12 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Invalid data payload" }, { status: 400 });
     }
 
+    const cleanBody = autoMigrateImageUrls(body);
     const store = getNetlifyStore();
     let blobSaved = false;
     if (store) {
       try {
-        await store.setJSON(BLOB_KEY, body);
+        await store.setJSON(BLOB_KEY, cleanBody);
         blobSaved = true;
       } catch (err) {
         console.warn("Error saving to Netlify Blobs:", err);
@@ -86,7 +121,7 @@ export async function POST(request: Request) {
 
     // Also attempt saving to disk for local dev
     try {
-      await fs.writeFile(DATA_FILE_PATH, JSON.stringify(body, null, 2), "utf-8");
+      await fs.writeFile(DATA_FILE_PATH, JSON.stringify(cleanBody, null, 2), "utf-8");
     } catch (fsErr) {
       // If we are on Netlify and blob was saved, it's expected that fs is read-only
       if (!blobSaved) {
@@ -94,7 +129,7 @@ export async function POST(request: Request) {
       }
     }
 
-    return NextResponse.json({ success: true, data: body });
+    return NextResponse.json({ success: true, data: cleanBody });
   } catch (error) {
     return NextResponse.json({ error: "Error saving site data", details: String(error) }, { status: 500 });
   }

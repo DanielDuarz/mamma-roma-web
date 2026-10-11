@@ -76,7 +76,7 @@
           "id": "pastas",
           "title": "Pastas Frescas al Huevo",
           "description": "Disfruta la auténtica tradición italiana en cada bocado. Pastas frescas elaboradas artesanalmente cada mañana con sémola de trigo duro importada y acompañadas de salsas de cocción lenta y carnes selectas.",
-          "image": "/images/dishes/mr-tagliatelle-uovo.jpg",
+          "image": "/images/dishes/mr-tagliatelle-uovo.webp",
           "badge": "Elaboración Diaria",
           "reverse": false
         },
@@ -84,7 +84,7 @@
           "id": "pizzas",
           "title": "Pizzas en Horno de Leña",
           "description": "La tradición italiana, rebanada a rebanada. Horneadas al punto perfecto con leña de roble, salsa de tomates San Marzano, mozzarella Fior di Latte y finas hierbas frescas.",
-          "image": "/images/dishes/mr-pizza-horno-lena.jpg",
+          "image": "/images/dishes/mr-pizza-horno-lena.webp",
           "badge": "Horno de Leña",
           "reverse": true
         },
@@ -92,7 +92,7 @@
           "id": "risotto-carnes",
           "title": "Risotto ai Porcini & Carnes Selectas",
           "description": "Auténtico arroz carnaroli cremoso con hongos silvestres porcini y finas láminas de trufa negra, además de exquisitas opciones de tagliata y parrilladas italianas para compartir.",
-          "image": "/images/dishes/mr-risotto-porcini.jpg",
+          "image": "/images/dishes/mr-risotto-porcini.webp",
           "badge": "Chef Choice",
           "reverse": false
         }
@@ -567,7 +567,7 @@
           "id": "sc-carpaccio",
           "title": "Pizza Carpaccio Romana",
           "description": "Nuestra especialidad insigne sobre masa crujiente de alta hidratación: finas lascas de carpaccio de lomo de res, hojas de arúgula fresca, alcaparras crocantes, lascas de queso Parmigiano y toque cítrico artesanal.",
-          "image": "/images/dishes/sc-pizza-carpaccio.jpg",
+          "image": "/images/dishes/sc-pizza-carpaccio.webp",
           "badge": "Especialidad de la Casa",
           "reverse": false
         },
@@ -575,7 +575,7 @@
           "id": "sc-salmon",
           "title": "Pizza Rellena de Salmón & Philadelphia",
           "description": "Exclusiva creación de autor horneada con salmón ahumado de primera calidad, suave queso crema Philadelphia, láminas de aguacate fresco y arúgula silvestre sobre corteza dorada.",
-          "image": "/images/dishes/sc-pizza-rellena-salmon.jpg",
+          "image": "/images/dishes/sc-pizza-rellena-salmon.webp",
           "badge": "Creación Exclusiva",
           "reverse": true
         },
@@ -583,7 +583,7 @@
           "id": "sc-suppli-lasagna",
           "title": "Supplì al Telefono & Lasagna al Horno",
           "description": "El snack callejero por excelencia de Roma: croquetas crujientes de arroz al pomodoro rellenas de mozzarella fundida que estira como hilo de teléfono, junto a nuestra clásica lasagna horneada a la leña.",
-          "image": "/images/dishes/sc-suppli.jpg",
+          "image": "/images/dishes/sc-suppli.webp",
           "badge": "Street Food Romano",
           "reverse": false
         }

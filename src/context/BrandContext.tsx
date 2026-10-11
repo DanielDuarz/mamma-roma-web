@@ -28,6 +28,35 @@ export function BrandProvider({ children }: { children: React.ReactNode }) {
   const [lightboxItem, setLightboxItem] = useState<MenuItem | null>(null);
   const [brands, setBrands] = useState<Record<BrandId, BrandData>>(BRANDS);
 
+function autoMigrateBrandsUrls<T>(obj: T): T {
+  if (typeof obj === "string") {
+    if (obj.startsWith("/images/uploads/") && obj.endsWith(".png")) {
+      return obj.replace(/\.png$/, ".webp") as unknown as T;
+    }
+    if (obj.startsWith("/images/dishes/") && obj.endsWith(".jpg")) {
+      return obj.replace(/\.jpg$/, ".webp") as unknown as T;
+    }
+    if (obj === "/images/heroes/mr-story.jpg") {
+      return "/images/heroes/mr-story.webp" as unknown as T;
+    }
+    if (obj === "/images/logos/logo-group.png") {
+      return "/images/logos/logo-group.webp" as unknown as T;
+    }
+    return obj;
+  }
+  if (Array.isArray(obj)) {
+    return obj.map(autoMigrateBrandsUrls) as unknown as T;
+  }
+  if (obj && typeof obj === "object") {
+    const res: Record<string, unknown> = {};
+    for (const [k, v] of Object.entries(obj)) {
+      res[k] = autoMigrateBrandsUrls(v);
+    }
+    return res as unknown as T;
+  }
+  return obj;
+}
+
   // Sync with /api/data on load
   const refreshSiteData = async () => {
     try {
@@ -35,9 +64,10 @@ export function BrandProvider({ children }: { children: React.ReactNode }) {
       if (res.ok) {
         const data = await res.json();
         if (data && data["mamma-roma"] && data["sette-colli"]) {
-          setBrands(data);
+          const migrated = autoMigrateBrandsUrls(data);
+          setBrands(migrated);
           try {
-            localStorage.setItem(LOCAL_STORAGE_DATA_KEY, JSON.stringify(data));
+            localStorage.setItem(LOCAL_STORAGE_DATA_KEY, JSON.stringify(migrated));
           } catch {
             // ignore
           }
@@ -54,7 +84,8 @@ export function BrandProvider({ children }: { children: React.ReactNode }) {
       if (cached) {
         const parsed = JSON.parse(cached);
         if (parsed && parsed["mamma-roma"] && parsed["sette-colli"]) {
-          setBrands(parsed);
+          const migrated = autoMigrateBrandsUrls(parsed);
+          setBrands(migrated);
         }
       }
     } catch {
