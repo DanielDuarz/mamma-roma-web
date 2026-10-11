@@ -68,6 +68,8 @@ export default function StorySection() {
               key={storyImgSrc}
               src={storyImgSrc}
               alt={brand.storyTitle}
+              width={600}
+              height={450}
               loading="lazy"
               decoding="async"
               onError={() => {

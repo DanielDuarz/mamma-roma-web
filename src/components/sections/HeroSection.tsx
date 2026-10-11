@@ -49,6 +49,8 @@ export default function HeroSection() {
           key={heroImgSrc}
           src={heroImgSrc}
           alt={brand.name || "Restaurante Italiano"}
+          width={1200}
+          height={800}
           loading="eager"
           decoding="async"
           // @ts-expect-error fetchPriority attribute in React 18

@@ -114,8 +114,11 @@ export default function SpecialtiesSection() {
                     <img
                       src={item.image}
                       alt={item.title}
+                      width={600}
+                      height={450}
                       className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                       loading="lazy"
+                      decoding="async"
                     />
                   </div>
                 </div>

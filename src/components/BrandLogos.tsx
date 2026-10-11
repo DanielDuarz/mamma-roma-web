@@ -153,6 +153,8 @@ export function MammaRomaGroupLogo({
           <img
             src="/images/logos/logo-group.webp"
             alt="Mamma Roma Group"
+            width={200}
+            height={56}
             className="h-12 sm:h-14 w-auto object-contain"
             loading="lazy"
             decoding="async"
