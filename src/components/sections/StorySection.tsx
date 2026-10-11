@@ -6,7 +6,7 @@ import { useBrand } from "@/context/BrandContext";
 import { Award, Leaf, Flame, Clock } from "lucide-react";
 
 export default function StorySection() {
-  const { brandId, brand } = useBrand();
+  const { brandId, brand, setActiveTab } = useBrand();
   const isMammaRoma = brandId === "mamma-roma";
 
   const defaultStoryFallback = isMammaRoma
@@ -24,12 +24,22 @@ export default function StorySection() {
         { label: "Ingredientes Genuinos", value: "100%", icon: <Leaf className="w-5 h-5" /> },
         { label: "Sucursales Activas", value: String(brand.locations.length), icon: <Award className="w-5 h-5" /> },
         { label: "Años de Tradición", value: "15+", icon: <Clock className="w-5 h-5" /> },
-        { label: "Platos al Menú", value: String(brand.menuItems.length), icon: <Flame className="w-5 h-5" /> },
+        {
+          label: "Conoce nuestro menú variado",
+          value: "Menú Variado",
+          icon: <Flame className="w-5 h-5" />,
+          isLinkToMenu: true,
+        },
       ]
     : [
         { label: "Fermentación Lenta", value: "72h", icon: <Clock className="w-5 h-5" /> },
         { label: "Sucursales Activas", value: String(brand.locations.length), icon: <Award className="w-5 h-5" /> },
-        { label: "Variedades al Menú", value: String(brand.menuItems.length), icon: <Flame className="w-5 h-5" /> },
+        {
+          label: "Conoce nuestro menú variado",
+          value: "Menú Variado",
+          icon: <Flame className="w-5 h-5" />,
+          isLinkToMenu: true,
+        },
         { label: "Temperatura del Horno", value: "450°C", icon: <Leaf className="w-5 h-5" /> },
       ];
 
@@ -142,25 +152,37 @@ export default function StorySection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: 0.2 + i * 0.08 }}
+                  onClick={() => {
+                    if (stat.isLinkToMenu) setActiveTab("menu");
+                  }}
                   className={`p-4 rounded-xl border transition-all hover:shadow-md ${
+                    stat.isLinkToMenu ? "cursor-pointer group hover:scale-[1.02]" : ""
+                  } ${
                     isMammaRoma
                       ? "bg-neutral-50 border-neutral-200 hover:border-[#171919]"
                       : "bg-white/60 border-[#774b1b]/20 hover:border-[#774b1b]"
                   }`}
                 >
                   <div
-                    className="mb-2"
+                    className="mb-2 flex items-center justify-between"
                     style={{ color: isMammaRoma ? "#171919" : "#bf241e" }}
                   >
                     {stat.icon}
+                    {stat.isLinkToMenu && (
+                      <span className="text-[9px] font-black uppercase tracking-wider text-[#d7a53b] bg-black/5 px-2 py-0.5 rounded-full">
+                        Ver Carta →
+                      </span>
+                    )}
                   </div>
                   <span
-                    className="block text-2xl sm:text-3xl font-black"
+                    className={`block font-black leading-tight ${
+                      stat.isLinkToMenu ? "text-lg sm:text-xl" : "text-2xl sm:text-3xl"
+                    }`}
                     style={{ color: isMammaRoma ? "#171919" : "#bf241e" }}
                   >
                     {stat.value}
                   </span>
-                  <span className="text-xs uppercase tracking-wider font-semibold text-neutral-500 mt-0.5 block">
+                  <span className="text-xs uppercase tracking-wider font-semibold text-neutral-500 mt-1 block">
                     {stat.label}
                   </span>
                 </motion.div>

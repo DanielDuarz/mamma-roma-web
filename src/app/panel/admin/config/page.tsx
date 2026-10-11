@@ -47,6 +47,7 @@ import {
 } from "@/data/brandsData";
 import { MammaRomaGroupLogo } from "@/components/BrandLogos";
 import ImageUploader from "@/components/ImageUploader";
+import PdfMenuImporter from "@/components/PdfMenuImporter";
 
 const DEFAULT_ADMIN_PASSWORD = "zaftyg-ryhko2-decqIv";
 const STORAGE_PW_KEY = "mr_admin_master_password";
@@ -1653,7 +1654,29 @@ export default function SecureAdminConfigPage() {
 
               {/* PANEL 2: GESTOR DE PÁGINAS DE LA CARTA (17 PÁGINAS EN ALTA RESOLUCIÓN) */}
               <div className="bg-neutral-900 border border-neutral-800 p-6 sm:p-8 rounded-3xl space-y-6 shadow-xl">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-neutral-800 pb-5">
+                {/* PROCESADOR AUTOMÁTICO DE PDF */}
+                <PdfMenuImporter
+                  brandId={selectedBrand}
+                  brandName={currentBrand.name}
+                  hasPages={currentVisualMenu.pages.length > 0}
+                  onPagesGenerated={(newPages, pdfUrl) => {
+                    const updated: VisualMenuConfig = {
+                      ...currentVisualMenu,
+                      pages: newPages,
+                      pdfDownloadUrl: pdfUrl,
+                    };
+                    updateCurrentBrandField("visualMenu", updated);
+                  }}
+                  onClearAllPages={() => {
+                    const updated: VisualMenuConfig = {
+                      ...currentVisualMenu,
+                      pages: [],
+                    };
+                    updateCurrentBrandField("visualMenu", updated);
+                  }}
+                />
+
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-neutral-800 pb-5 pt-2">
                   <div>
                     <h2 className="text-lg font-black text-white flex items-center gap-2">
                       <FileText className="w-5 h-5 text-[#d7a53b]" />

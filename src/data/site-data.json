@@ -159,68 +159,6 @@
         "price": 95,
         "badge": "100% Romana",
         "image": "/images/dishes/mr-carbonara.jpg"
-      },
-      {
-        "id": "mr-pas-tagliatelle",
-        "name": "Tagliatelle all’Uovo con Lomo & Hongos",
-        "category": "Pastas",
-        "description": "Pasta fresca al huevo salteada en cremosa salsa de hongos de estación, acompañada de tiernos medallones de lomo de res sellados.",
-        "price": 115,
-        "badge": "Recomendado",
-        "image": "/images/dishes/mr-tagliatelle-uovo.jpg"
-      },
-      {
-        "id": "mr-piz-horno",
-        "name": "Pizza en Horno de Leña Mamma Roma",
-        "category": "Pizzas",
-        "description": "Masa de fermentación lenta horneada a la leña con salsa de tomates San Marzano, mozzarella fundida y salchicha italiana artesanal.",
-        "price": 105,
-        "badge": "Al Horno de Leña",
-        "image": "/images/dishes/mr-pizza-horno-lena.jpg"
-      },
-      {
-        "id": "mr-piz-bianca",
-        "name": "Pizza Gourmet Bianca & Quattro Formaggi",
-        "category": "Pizzas",
-        "description": "Base de mozzarella, gorgonzola, fontina y parmigiano reggiano con toque de miel de trufa y nueces.",
-        "price": 115,
-        "image": "/images/dishes/mr-pizza-2.jpg",
-        "isVegetarian": true
-      },
-      {
-        "id": "mr-pos-tiramisu",
-        "name": "Tiramisú Tradizionale",
-        "category": "Postres",
-        "description": "Bizcochos savoiardi bañados en auténtico espresso italiano y licor, capas de crema sedosa de mascarpone y cacao amargo.",
-        "price": 52,
-        "badge": "Imperdible",
-        "image": "/images/dishes/mr-postre.jpg",
-        "isVegetarian": true
-      },
-      {
-        "id": "mr-pos-panna",
-        "name": "Panna Cotta Artigianale ai Frutti di Bosco",
-        "category": "Postres",
-        "description": "Budín italiano con nata y vainilla natural con reducción de frutos rojos y jalea artesanal.",
-        "price": 55,
-        "image": "/images/dishes/mr-postre.jpg",
-        "isVegetarian": true
-      },
-      {
-        "id": "mr-beb-1",
-        "name": "Aperol Spritz",
-        "category": "Bebidas",
-        "description": "Aperol, Prosecco D.O.C., soda y rodaja de naranja fresca servido en copa con abundante hielo.",
-        "price": 65,
-        "image": "https://images.unsplash.com/photo-1560512823-829485b8bf24?auto=format&fit=crop&w=800&q=80"
-      },
-      {
-        "id": "mr-beb-2",
-        "name": "Angelo Poretti / Birra Italiana",
-        "category": "Bebidas",
-        "description": "Cerveza artesanal italiana importada de calidad superior.",
-        "price": 35,
-        "image": "https://images.unsplash.com/photo-1608270199587-f273db94f6c4?auto=format&fit=crop&w=800&q=80"
       }
     ],
     "sauces": [
@@ -728,16 +666,6 @@
         "image": "/images/dishes/sc-pizza-horno.jpg"
       },
       {
-        "id": "sc-ent-suppli",
-        "name": "Supplì al Telefono (Arancini Romanos)",
-        "category": "Entradas",
-        "description": "Croquetas tradicionales romanas de arroz con pomodoro, rellenas de abundante mozzarella fundida y empanizado crujiente.",
-        "price": 60,
-        "badge": "100% Romano",
-        "image": "/images/dishes/sc-suppli.jpg",
-        "isVegetarian": true
-      },
-      {
         "id": "sc-pos-tiramisu",
         "name": "Tiramisú al Mascarpone",
         "category": "Postres",
@@ -745,14 +673,6 @@
         "price": 50,
         "image": "/images/dishes/mr-postre.jpg",
         "isVegetarian": true
-      },
-      {
-        "id": "sc-beb-moretti",
-        "name": "Birra Moretti / Cerveza Italiana",
-        "category": "Bebidas",
-        "description": "Cerveza tradicional italiana perfecta para maridar con pizzas al horno de leña.",
-        "price": 40,
-        "image": "https://images.unsplash.com/photo-1608270199587-f273db94f6c4?auto=format&fit=crop&w=800&q=80"
       }
     ],
     "locations": [
