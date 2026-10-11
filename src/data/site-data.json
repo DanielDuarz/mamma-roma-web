@@ -134,43 +134,6 @@
     ],
     "menuItems": [
       {
-        "id": "mr-pas-2",
-        "name": "Spaghetti alla Carbonara Tradizionale",
-        "category": "Pastas",
-        "description": "Auténtica carbonara romana: yemas de huevo pasteurizadas, guanciale crujiente, Pecorino Romano D.O.P. y pimienta negra molida al momento (sin crema).",
-        "price": 95,
-        "badge": "100% Romana",
-        "image": "/images/dishes/mr-carbonara.jpg"
-      },
-      {
-        "id": "mr-pas-tagliatelle",
-        "name": "Tagliatelle all’Uovo con Lomo & Hongos",
-        "category": "Pastas",
-        "description": "Pasta fresca al huevo salteada en cremosa salsa de hongos de estación, acompañada de tiernos medallones de lomo de res sellados a la parrilla.",
-        "price": 115,
-        "badge": "Recomendado",
-        "image": "/images/dishes/mr-tagliatelle-uovo.jpg"
-      },
-      {
-        "id": "mr-ris-porcini",
-        "name": "Risotto ai Funghi Porcini & Tartufo",
-        "category": "Pastas",
-        "description": "Cremoso arroz carnaroli italiano con hongos silvestres porcini, mantequilla de trufa negra y lascas de trufa fresca.",
-        "price": 120,
-        "badge": "Especialidad",
-        "image": "/images/dishes/mr-risotto-porcini.jpg",
-        "isVegetarian": true
-      },
-      {
-        "id": "mr-piz-horno",
-        "name": "Pizza en Horno de Leña Mamma Roma",
-        "category": "Pizzas",
-        "description": "Masa de fermentación lenta horneada a la leña con salsa de tomates San Marzano, mozzarella fundida, salchicha italiana artesanal y espinacas tiernas.",
-        "price": 105,
-        "badge": "Al Horno de Leña",
-        "image": "/images/dishes/mr-pizza-horno-lena.jpg"
-      },
-      {
         "id": "mr-parrilla",
         "name": "Parrilla Italiana para Compartir",
         "category": "Entradas",
@@ -180,49 +143,40 @@
         "image": "/images/dishes/mr-parrilla-compartir.jpg"
       },
       {
-        "id": "mr-carnes-tagliata",
-        "name": "Tagliata di Manzo al Romero",
-        "category": "Entradas",
-        "description": "Finas lascas de lomo de res a la parrilla servidas sobre cama de arúgula fresca, tomates cherry confitados y reducción balsámica.",
-        "price": 135,
-        "badge": "Cortes Selectos",
-        "image": "/images/dishes/mr-carnes.jpg"
-      },
-      {
         "id": "mr-ent-antipasto",
-        "name": "Antipasto & Entradas de la Nonna",
+        "name": "Tavola di Formaggi e Salumi della Nonna",
         "category": "Entradas",
-        "description": "Surtido tradicional italiano de embutidos curados, quesos importados, aceitunas marinadas y focaccia artesanal recién horneada.",
-        "price": 95,
+        "description": "Exclusiva tabla de quesos italianos importados con pecorino, mozzarella, salame milano y miel de abeja natural.",
+        "price": 199,
         "badge": "Favorito",
         "image": "/images/dishes/mr-entradas.jpg"
       },
       {
-        "id": "mr-pos-tiramisu",
-        "name": "Tiramisú Tradizionale",
-        "category": "Postres",
-        "description": "Bizcochos savoiardi bañados en auténtico espresso italiano y licor, capas de crema sedosa de mascarpone y cacao amargo espolvoreado.",
-        "price": 52,
-        "badge": "Imperdible",
-        "image": "/images/dishes/mr-postre.jpg",
-        "isVegetarian": true
-      },
-      {
-        "id": "mr-almuerzo-italiano",
-        "name": "Pranzo Italiano (Almuerzo Ejecutivo)",
+        "id": "mr-pas-2",
+        "name": "Spaghetti alla Carbonara Tradizionale",
         "category": "Pastas",
-        "description": "Opción completa de almuerzo tradicional con pasta fresca a elección, entrada del día y bebida refrescante.",
-        "price": 75,
-        "badge": "Lunch Especial",
-        "image": "/images/dishes/mr-almuerzo-italiano.jpg"
+        "description": "Auténtica carbonara romana: yemas de huevo pasteurizadas, guanciale crujiente, Pecorino Romano D.O.P. y pimienta negra molida al momento.",
+        "price": 95,
+        "badge": "100% Romana",
+        "image": "/images/dishes/mr-carbonara.jpg"
       },
       {
-        "id": "mr-piz-especial",
-        "name": "Pizza Clásica Mamma Roma",
+        "id": "mr-pas-tagliatelle",
+        "name": "Tagliatelle all’Uovo con Lomo & Hongos",
+        "category": "Pastas",
+        "description": "Pasta fresca al huevo salteada en cremosa salsa de hongos de estación, acompañada de tiernos medallones de lomo de res sellados.",
+        "price": 115,
+        "badge": "Recomendado",
+        "image": "/images/dishes/mr-tagliatelle-uovo.jpg"
+      },
+      {
+        "id": "mr-piz-horno",
+        "name": "Pizza en Horno de Leña Mamma Roma",
         "category": "Pizzas",
-        "description": "Tomates San Marzano, mozzarella artesanal fior di latte, jamón cotto italiano y albahaca fresca.",
-        "price": 98,
-        "image": "/images/dishes/mr-pizza.jpg"
+        "description": "Masa de fermentación lenta horneada a la leña con salsa de tomates San Marzano, mozzarella fundida y salchicha italiana artesanal.",
+        "price": 105,
+        "badge": "Al Horno de Leña",
+        "image": "/images/dishes/mr-pizza-horno-lena.jpg"
       },
       {
         "id": "mr-piz-bianca",
@@ -234,13 +188,23 @@
         "isVegetarian": true
       },
       {
-        "id": "mr-pas-del-dia",
-        "name": "Lasagna Emiliana al Forno",
-        "category": "Pastas",
-        "description": "Capas de pasta artesanal al huevo intercaladas con rico ragù a la boloñesa de 6 horas, suave bechamel y queso parmesano gratinado.",
-        "price": 105,
-        "badge": "Casera",
-        "image": "/images/dishes/mr-pasta.jpg"
+        "id": "mr-pos-tiramisu",
+        "name": "Tiramisú Tradizionale",
+        "category": "Postres",
+        "description": "Bizcochos savoiardi bañados en auténtico espresso italiano y licor, capas de crema sedosa de mascarpone y cacao amargo.",
+        "price": 52,
+        "badge": "Imperdible",
+        "image": "/images/dishes/mr-postre.jpg",
+        "isVegetarian": true
+      },
+      {
+        "id": "mr-pos-panna",
+        "name": "Panna Cotta Artigianale ai Frutti di Bosco",
+        "category": "Postres",
+        "description": "Budín italiano con nata y vainilla natural con reducción de frutos rojos y jalea artesanal.",
+        "price": 55,
+        "image": "/images/dishes/mr-postre.jpg",
+        "isVegetarian": true
       },
       {
         "id": "mr-beb-1",
@@ -252,11 +216,11 @@
       },
       {
         "id": "mr-beb-2",
-        "name": "San Pellegrino Sparkling (750ml)",
+        "name": "Angelo Poretti / Birra Italiana",
         "category": "Bebidas",
-        "description": "Agua mineral gasificada de manantial natural importada de los Alpes italianos.",
-        "price": 45,
-        "image": "https://images.unsplash.com/photo-1559839914-ba2a514d5642?auto=format&fit=crop&w=800&q=80"
+        "description": "Cerveza artesanal italiana importada de calidad superior.",
+        "price": 35,
+        "image": "https://images.unsplash.com/photo-1608270199587-f273db94f6c4?auto=format&fit=crop&w=800&q=80"
       }
     ],
     "sauces": [
@@ -460,6 +424,135 @@
       "directoryBadge": "Directorio Telefónico y WhatsApp",
       "directoryTitle": "Contacta a tu Sucursal Más Cercana",
       "directoryDescription": "Escribile directamente a los encargados de turno de cada restaurante para pedidos en mesa, reservaciones o consultas de parqueo."
+    },
+    "visualMenu": {
+      "enabled": true,
+      "itemsEnabled": false,
+      "primaryMode": "visual",
+      "title": "Carta Oficial Mamma Roma",
+      "subtitle": "La Vera Cucina Italiana • Menú oficial completo en alta resolución",
+      "pdfDownloadUrl": "/menu/mamma-roma-menu.pdf",
+      "pages": [
+        {
+          "id": "page-01",
+          "pageNumber": 1,
+          "title": "Portada del Menú",
+          "category": "Portada",
+          "image": "/images/menu-pages/menu-page-01.webp"
+        },
+        {
+          "id": "page-02",
+          "pageNumber": 2,
+          "title": "Desayunos",
+          "category": "Desayunos",
+          "image": "/images/menu-pages/menu-page-02.webp"
+        },
+        {
+          "id": "page-03",
+          "pageNumber": 3,
+          "title": "Entradas",
+          "category": "Entradas",
+          "image": "/images/menu-pages/menu-page-03.webp"
+        },
+        {
+          "id": "page-04",
+          "pageNumber": 4,
+          "title": "Carne & Pescado I",
+          "category": "Carnes & Pescados",
+          "image": "/images/menu-pages/menu-page-04.webp"
+        },
+        {
+          "id": "page-05",
+          "pageNumber": 5,
+          "title": "Carne & Pescado II",
+          "category": "Carnes & Pescados",
+          "image": "/images/menu-pages/menu-page-05.webp"
+        },
+        {
+          "id": "page-06",
+          "pageNumber": 6,
+          "title": "Pasta & Risotti I",
+          "category": "Pastas & Risottos",
+          "image": "/images/menu-pages/menu-page-06.webp"
+        },
+        {
+          "id": "page-07",
+          "pageNumber": 7,
+          "title": "Pasta & Risotti II",
+          "category": "Pastas & Risottos",
+          "image": "/images/menu-pages/menu-page-07.webp"
+        },
+        {
+          "id": "page-08",
+          "pageNumber": 8,
+          "title": "Pasta & Risotti III",
+          "category": "Pastas & Risottos",
+          "image": "/images/menu-pages/menu-page-08.webp"
+        },
+        {
+          "id": "page-09",
+          "pageNumber": 9,
+          "title": "Pizzas I",
+          "category": "Pizzas",
+          "image": "/images/menu-pages/menu-page-09.webp"
+        },
+        {
+          "id": "page-10",
+          "pageNumber": 10,
+          "title": "Pizzas II",
+          "category": "Pizzas",
+          "image": "/images/menu-pages/menu-page-10.webp"
+        },
+        {
+          "id": "page-11",
+          "pageNumber": 11,
+          "title": "Pizzas III",
+          "category": "Pizzas",
+          "image": "/images/menu-pages/menu-page-11.webp"
+        },
+        {
+          "id": "page-12",
+          "pageNumber": 12,
+          "title": "Panini & Burgers",
+          "category": "Panini",
+          "image": "/images/menu-pages/menu-page-12.webp"
+        },
+        {
+          "id": "page-13",
+          "pageNumber": 13,
+          "title": "Lunch's Mamma Roma",
+          "category": "Lunch",
+          "image": "/images/menu-pages/menu-page-13.webp"
+        },
+        {
+          "id": "page-14",
+          "pageNumber": 14,
+          "title": "Postres",
+          "category": "Postres",
+          "image": "/images/menu-pages/menu-page-14.webp"
+        },
+        {
+          "id": "page-15",
+          "pageNumber": 15,
+          "title": "Bebidas & Caffé",
+          "category": "Bebidas",
+          "image": "/images/menu-pages/menu-page-15.webp"
+        },
+        {
+          "id": "page-16",
+          "pageNumber": 16,
+          "title": "Promociones Especiales",
+          "category": "Promociones",
+          "image": "/images/menu-pages/menu-page-16.webp"
+        },
+        {
+          "id": "page-17",
+          "pageNumber": 17,
+          "title": "Ubicaciones & Contacto",
+          "category": "Contacto",
+          "image": "/images/menu-pages/menu-page-17.webp"
+        }
+      ]
     }
   },
   "sette-colli": {
@@ -608,6 +701,15 @@
         "image": "/images/dishes/sc-pizza-carpaccio.jpg"
       },
       {
+        "id": "sc-piz-compartir",
+        "name": "Pizza Margherita Clásica Familiar",
+        "category": "Pizzas Clásicas",
+        "description": "La reina de las pizzas: mozzarella fior di latte, pomodoro San Marzano y albahaca fresca en gran tamaño.",
+        "price": 140,
+        "image": "/images/dishes/sc-pizzas-familiar-2.jpg",
+        "isVegetarian": true
+      },
+      {
         "id": "sc-piz-salmon",
         "name": "Pizza Rellena de Salmón & Queso Philadelphia",
         "category": "Pizzas de Autor",
@@ -617,74 +719,22 @@
         "image": "/images/dishes/sc-pizza-rellena-salmon.jpg"
       },
       {
-        "id": "sc-ent-suppli",
-        "name": "Supplì al Telefono (Arancini Romanos)",
-        "category": "Entradas",
-        "description": "Croquetas tradicionales romanas de arroz con pomodoro, rellenas de abundante mozzarella fundida y empanizado extra crujiente.",
-        "price": 60,
-        "badge": "100% Romano",
-        "image": "/images/dishes/sc-suppli.jpg",
-        "isVegetarian": true
-      },
-      {
-        "id": "sc-pas-lasagna",
-        "name": "Lasagna Artigianale al Horno de Leña",
-        "category": "Pizzas de Autor",
-        "description": "Capas doradas de pasta al huevo con ragù boloñesa clásico de cocción lenta, bechamel sedosa y mozzarella gratinada en horno de leña.",
-        "price": 105,
+        "id": "sc-cal-romano",
+        "name": "Calzone Romano al Forno a Legna",
+        "category": "Calzones",
+        "description": "Empanada gigante de masa madre doblada y sellada, rellena de ricotta fresca, mozzarella, prosciutto cotto y pimienta.",
+        "price": 85,
         "badge": "Horno a 450°C",
-        "image": "/images/dishes/sc-lasagna.jpg"
-      },
-      {
-        "id": "sc-pas-ragu",
-        "name": "Pasta al Ragù Bolognese Tradizionale",
-        "category": "Pizzas de Autor",
-        "description": "Pasta fresca salteada con nuestra salsa boloñesa casera con carne selecta, vino tinto y abundante queso parmesano rallado.",
-        "price": 95,
-        "badge": "Clásica",
-        "image": "/images/dishes/sc-pasta-ragu.jpg"
-      },
-      {
-        "id": "sc-piz-familiar",
-        "name": "Pizzas Familiares Romanas",
-        "category": "Pizzas Clásicas",
-        "description": "Pizzas de gran formato ideales para compartir entre 4 a 6 personas, con combinaciones clásicas a elección.",
-        "price": 165,
-        "badge": "Familiar",
-        "image": "/images/dishes/sc-pizzas-familiar.jpg"
-      },
-      {
-        "id": "sc-piz-horno",
-        "name": "Pizza Clásica al Horno de Leña",
-        "category": "Pizzas Clásicas",
-        "description": "Tomates San Marzano, mozzarella fior di latte fundida, jamón artesanal, albahaca y aceite de oliva extra virgen.",
-        "price": 95,
         "image": "/images/dishes/sc-pizza-horno.jpg"
       },
       {
-        "id": "sc-pas-fresca",
-        "name": "Pastas de Autor Sette Colli",
-        "category": "Pizzas de Autor",
-        "description": "Platos de pasta fresca con salsas artesanales creadas al momento por nuestros maestros cocineros.",
-        "price": 98,
-        "image": "/images/dishes/sc-pastas.jpg"
-      },
-      {
-        "id": "sc-lunch-combo",
-        "name": "Combo Lunch Romano",
-        "category": "Pizzas Clásicas",
-        "description": "Porción individual de pizza o calzone acompañada de bebida y ensalada o postre, de martes a viernes al mediodía.",
-        "price": 75,
-        "badge": "Lunch",
-        "image": "/images/dishes/sc-lunch.jpg"
-      },
-      {
-        "id": "sc-piz-compartir",
-        "name": "Pizza Margherita Clásica Familiar",
-        "category": "Pizzas Clásicas",
-        "description": "La reina de las pizzas: mozzarella fior di latte, pomodoro San Marzano y albahaca fresca en gran tamaño.",
-        "price": 140,
-        "image": "/images/dishes/sc-pizzas-familiar-2.jpg",
+        "id": "sc-ent-suppli",
+        "name": "Supplì al Telefono (Arancini Romanos)",
+        "category": "Entradas",
+        "description": "Croquetas tradicionales romanas de arroz con pomodoro, rellenas de abundante mozzarella fundida y empanizado crujiente.",
+        "price": 60,
+        "badge": "100% Romano",
+        "image": "/images/dishes/sc-suppli.jpg",
         "isVegetarian": true
       },
       {
@@ -837,6 +887,135 @@
       "directoryBadge": "Directorio Telefónico y WhatsApp",
       "directoryTitle": "Contacta a tu Sucursal Más Cercana",
       "directoryDescription": "Escribile directamente a nuestro equipo en Convenia Plaza Zona 10 para reservaciones o pedidos para llevar."
+    },
+    "visualMenu": {
+      "enabled": true,
+      "itemsEnabled": false,
+      "primaryMode": "visual",
+      "title": "Carta Oficial Sette Colli",
+      "subtitle": "Pizzeria & Cucina Romana • Menú oficial completo en alta resolución",
+      "pdfDownloadUrl": "/menu/mamma-roma-menu.pdf",
+      "pages": [
+        {
+          "id": "page-01",
+          "pageNumber": 1,
+          "title": "Portada del Menú",
+          "category": "Portada",
+          "image": "/images/menu-pages/menu-page-01.webp"
+        },
+        {
+          "id": "page-02",
+          "pageNumber": 2,
+          "title": "Desayunos",
+          "category": "Desayunos",
+          "image": "/images/menu-pages/menu-page-02.webp"
+        },
+        {
+          "id": "page-03",
+          "pageNumber": 3,
+          "title": "Entradas",
+          "category": "Entradas",
+          "image": "/images/menu-pages/menu-page-03.webp"
+        },
+        {
+          "id": "page-04",
+          "pageNumber": 4,
+          "title": "Carne & Pescado I",
+          "category": "Carnes & Pescados",
+          "image": "/images/menu-pages/menu-page-04.webp"
+        },
+        {
+          "id": "page-05",
+          "pageNumber": 5,
+          "title": "Carne & Pescado II",
+          "category": "Carnes & Pescados",
+          "image": "/images/menu-pages/menu-page-05.webp"
+        },
+        {
+          "id": "page-06",
+          "pageNumber": 6,
+          "title": "Pasta & Risotti I",
+          "category": "Pastas & Risottos",
+          "image": "/images/menu-pages/menu-page-06.webp"
+        },
+        {
+          "id": "page-07",
+          "pageNumber": 7,
+          "title": "Pasta & Risotti II",
+          "category": "Pastas & Risottos",
+          "image": "/images/menu-pages/menu-page-07.webp"
+        },
+        {
+          "id": "page-08",
+          "pageNumber": 8,
+          "title": "Pasta & Risotti III",
+          "category": "Pastas & Risottos",
+          "image": "/images/menu-pages/menu-page-08.webp"
+        },
+        {
+          "id": "page-09",
+          "pageNumber": 9,
+          "title": "Pizzas I",
+          "category": "Pizzas",
+          "image": "/images/menu-pages/menu-page-09.webp"
+        },
+        {
+          "id": "page-10",
+          "pageNumber": 10,
+          "title": "Pizzas II",
+          "category": "Pizzas",
+          "image": "/images/menu-pages/menu-page-10.webp"
+        },
+        {
+          "id": "page-11",
+          "pageNumber": 11,
+          "title": "Pizzas III",
+          "category": "Pizzas",
+          "image": "/images/menu-pages/menu-page-11.webp"
+        },
+        {
+          "id": "page-12",
+          "pageNumber": 12,
+          "title": "Panini & Burgers",
+          "category": "Panini",
+          "image": "/images/menu-pages/menu-page-12.webp"
+        },
+        {
+          "id": "page-13",
+          "pageNumber": 13,
+          "title": "Lunch's Mamma Roma",
+          "category": "Lunch",
+          "image": "/images/menu-pages/menu-page-13.webp"
+        },
+        {
+          "id": "page-14",
+          "pageNumber": 14,
+          "title": "Postres",
+          "category": "Postres",
+          "image": "/images/menu-pages/menu-page-14.webp"
+        },
+        {
+          "id": "page-15",
+          "pageNumber": 15,
+          "title": "Bebidas & Caffé",
+          "category": "Bebidas",
+          "image": "/images/menu-pages/menu-page-15.webp"
+        },
+        {
+          "id": "page-16",
+          "pageNumber": 16,
+          "title": "Promociones Especiales",
+          "category": "Promociones",
+          "image": "/images/menu-pages/menu-page-16.webp"
+        },
+        {
+          "id": "page-17",
+          "pageNumber": 17,
+          "title": "Ubicaciones & Contacto",
+          "category": "Contacto",
+          "image": "/images/menu-pages/menu-page-17.webp"
+        }
+      ]
     }
   }
 }

@@ -28,6 +28,9 @@ import {
   Flame,
   Layers,
   Info,
+  BookOpen,
+  FileText,
+  Download,
 } from "lucide-react";
 import { useBrand } from "@/context/BrandContext";
 import {
@@ -38,6 +41,9 @@ import {
   PromotionItem,
   BrandData,
   EventPackage,
+  VisualMenuPage,
+  VisualMenuConfig,
+  DEFAULT_VISUAL_MENU_PAGES,
 } from "@/data/brandsData";
 import { MammaRomaGroupLogo } from "@/components/BrandLogos";
 import ImageUploader from "@/components/ImageUploader";
@@ -1478,107 +1484,365 @@ export default function SecureAdminConfigPage() {
         )}
 
         {/* TAB 4: MENÚ DIGITAL & PLATILLOS */}
-        {activeTab === "menu" && (
-          <div className="space-y-6">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-neutral-900 border border-neutral-800 p-6 rounded-3xl">
-              <div>
-                <h2 className="text-lg font-black text-white flex items-center gap-2">
-                  <Utensils className="w-5 h-5 text-[#d7a53b]" />
-                  <span>Catálogo de Menú ({currentBrand.menuItems.length} platillos)</span>
-                </h2>
-                <p className="text-xs text-neutral-400 mt-1">
-                  Agrega platillos con fotos optimizadas, precios, categorías y descripciones.
-                </p>
-              </div>
+        {/* TAB 4: MENÚ DIGITAL & PLATILLOS */}
+        {activeTab === "menu" && (() => {
+          const currentVisualMenu: VisualMenuConfig = currentBrand.visualMenu || {
+            enabled: true,
+            itemsEnabled: false,
+            primaryMode: "visual",
+            title: "Carta Oficial de Menú",
+            subtitle: "Nuestra selección gastronómica artesanal en alta resolución",
+            pdfDownloadUrl: "/menu/mamma-roma-menu.pdf",
+            pages: DEFAULT_VISUAL_MENU_PAGES,
+          };
 
-              <div className="flex items-center gap-3">
-                <button
-                  onClick={() => setShowAddDishModal(true)}
-                  className="py-2.5 px-4 bg-[#e3252d] hover:bg-[#c91e25] text-white rounded-xl text-xs font-bold uppercase tracking-wider transition shadow flex items-center gap-2"
-                >
-                  <Plus className="w-4 h-4" />
-                  <span>Agregar Platillo</span>
-                </button>
-              </div>
-            </div>
+          const updateVisualMenuField = <K extends keyof VisualMenuConfig>(
+            field: K,
+            value: VisualMenuConfig[K]
+          ) => {
+            const updated: VisualMenuConfig = {
+              ...currentVisualMenu,
+              [field]: value,
+            };
+            updateCurrentBrandField("visualMenu", updated);
+          };
 
-            {/* Search and Category Filter */}
-            <div className="bg-neutral-900 border border-neutral-800 p-4 rounded-2xl flex items-center gap-4">
-              <Search className="w-4 h-4 text-neutral-400" />
-              <input
-                type="text"
-                value={dishSearch}
-                onChange={(e) => setDishSearch(e.target.value)}
-                placeholder="Buscar platillo por nombre o ingrediente..."
-                className="w-full bg-transparent text-sm text-white placeholder-neutral-500 focus:outline-none"
-              />
-            </div>
+          const updateVisualMenuPage = (pageId: string, updates: Partial<VisualMenuPage>) => {
+            const updatedPages = currentVisualMenu.pages.map((p) =>
+              p.id === pageId ? { ...p, ...updates } : p
+            );
+            updateVisualMenuField("pages", updatedPages);
+          };
 
-            {/* Dishes Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {currentBrand.menuItems
-                .filter(
-                  (d) =>
-                    d.name.toLowerCase().includes(dishSearch.toLowerCase()) ||
-                    d.category.toLowerCase().includes(dishSearch.toLowerCase())
-                )
-                .map((dish) => (
-                  <div
-                    key={dish.id}
-                    className="bg-neutral-900 border border-neutral-800 rounded-3xl p-5 space-y-4 flex flex-col justify-between"
-                  >
-                    <div className="space-y-3">
-                      <div className="flex items-center justify-between">
-                        <span className="text-[11px] bg-neutral-800 text-neutral-300 px-2.5 py-0.5 rounded-full font-bold">
-                          {dish.category}
-                        </span>
-                        <button
-                          onClick={() => handleDeleteDish(dish.id)}
-                          className="p-1.5 bg-neutral-800 hover:bg-red-950 text-neutral-400 hover:text-red-400 rounded-lg transition"
-                          title="Eliminar platillo"
-                        >
-                          <Trash2 className="w-3.5 h-3.5" />
-                        </button>
-                      </div>
+          const handleAddVisualMenuPage = () => {
+            const newNum = currentVisualMenu.pages.length + 1;
+            const newPage: VisualMenuPage = {
+              id: `page-${Date.now()}`,
+              pageNumber: newNum,
+              title: `Página ${newNum}`,
+              category: "General",
+              image: "/images/heroes/hero-mamma-roma.png",
+            };
+            updateVisualMenuField("pages", [...currentVisualMenu.pages, newPage]);
+          };
 
-                      <div className="relative h-36 rounded-2xl overflow-hidden bg-neutral-950 border border-neutral-800">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                          src={dish.image}
-                          alt={dish.name}
-                          className="w-full h-full object-cover"
-                        />
-                        <div className="absolute top-2 right-2 bg-emerald-600 text-white text-xs font-black px-2.5 py-1 rounded-lg shadow">
-                          Q{dish.price}
-                        </div>
-                        {dish.badge && (
-                          <div className="absolute top-2 left-2 bg-[#e3252d] text-white text-[10px] font-black uppercase px-2 py-0.5 rounded shadow">
-                            {dish.badge}
-                          </div>
-                        )}
-                      </div>
+          const handleDeleteVisualMenuPage = (pageId: string) => {
+            if (currentVisualMenu.pages.length <= 1) return;
+            const updatedPages = currentVisualMenu.pages
+              .filter((p) => p.id !== pageId)
+              .map((p, idx) => ({ ...p, pageNumber: idx + 1 }));
+            updateVisualMenuField("pages", updatedPages);
+          };
 
-                      <div>
-                        <h4 className="text-base font-black text-white">{dish.name}</h4>
-                        <p className="text-xs text-neutral-400 mt-1 line-clamp-2">
-                          {dish.description}
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="pt-2 border-t border-neutral-800 flex items-center justify-between text-[11px] text-neutral-400">
-                      <span>ID: {dish.id.slice(0, 10)}</span>
-                      <div className="flex items-center gap-1.5">
-                        {dish.isVegetarian && <span title="Vegetariano">🌱</span>}
-                        {dish.isGlutenFree && <span title="Sin Gluten">🌾</span>}
-                        {dish.isSpicy && <span title="Picante">🌶️</span>}
-                      </div>
-                    </div>
+          return (
+            <div className="space-y-8">
+              {/* PANEL 1: CONTROL GENERAL DEL MENÚ (ACTIVAR/DESACTIVAR MODOS) */}
+              <div className="bg-neutral-900 border border-neutral-800 p-6 sm:p-8 rounded-3xl space-y-6 shadow-xl">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-neutral-800 pb-5">
+                  <div>
+                    <h2 className="text-lg font-black text-white flex items-center gap-2">
+                      <BookOpen className="w-5 h-5 text-[#d7a53b]" />
+                      <span>Modo de Visualización del Menú</span>
+                    </h2>
+                    <p className="text-xs text-neutral-400 mt-1">
+                      Elige cómo tus clientes ven el menú: Carta en Alta Resolución (PDF/Imágenes para scrollear), Menú Interactivo de platillos por separado, o ambos a la vez.
+                    </p>
                   </div>
-                ))}
+
+                  <span className="text-[11px] font-bold px-3 py-1 rounded-full bg-neutral-800 text-[#d7a53b] border border-neutral-700 w-fit">
+                    Marca activa: {currentBrand.name}
+                  </span>
+                </div>
+
+                {/* Switches de Activación */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {/* Switch Carta Alta Resolución */}
+                  <div className="bg-neutral-950 border border-neutral-800 p-5 rounded-2xl flex items-start justify-between gap-4">
+                    <div className="space-y-1">
+                      <div className="flex items-center gap-2">
+                        <FileText className="w-4 h-4 text-[#d7a53b]" />
+                        <span className="text-sm font-bold text-white">
+                          Carta en Alta Resolución (PDF / Scroll)
+                        </span>
+                      </div>
+                      <p className="text-xs text-neutral-400 leading-relaxed">
+                        Muestra las 17 páginas del menú oficial en imágenes en alta resolución con zoom y salto por secciones.
+                      </p>
+                    </div>
+
+                    <label className="relative inline-flex items-center cursor-pointer flex-shrink-0 mt-1">
+                      <input
+                        type="checkbox"
+                        checked={currentVisualMenu.enabled}
+                        onChange={(e) => updateVisualMenuField("enabled", e.target.checked)}
+                        className="sr-only peer"
+                      />
+                      <div className="w-11 h-6 bg-neutral-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-600"></div>
+                    </label>
+                  </div>
+
+                  {/* Switch Menú Interactivo */}
+                  <div className="bg-neutral-950 border border-neutral-800 p-5 rounded-2xl flex items-start justify-between gap-4">
+                    <div className="space-y-1">
+                      <div className="flex items-center gap-2">
+                        <Utensils className="w-4 h-4 text-[#d7a53b]" />
+                        <span className="text-sm font-bold text-white">
+                          Menú Interactivo de Platillos
+                        </span>
+                      </div>
+                      <p className="text-xs text-neutral-400 leading-relaxed">
+                        Muestra la cuadrícula de platillos con buscador por ingredientes y filtros de categorías (1-2 platillos por categoría).
+                      </p>
+                    </div>
+
+                    <label className="relative inline-flex items-center cursor-pointer flex-shrink-0 mt-1">
+                      <input
+                        type="checkbox"
+                        checked={currentVisualMenu.itemsEnabled}
+                        onChange={(e) => updateVisualMenuField("itemsEnabled", e.target.checked)}
+                        className="sr-only peer"
+                      />
+                      <div className="w-11 h-6 bg-neutral-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-600"></div>
+                    </label>
+                  </div>
+                </div>
+
+                {/* Textos y Enlace del PDF */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold text-neutral-300 uppercase tracking-wider">
+                      Título de la Carta
+                    </label>
+                    <input
+                      type="text"
+                      value={currentVisualMenu.title || ""}
+                      onChange={(e) => updateVisualMenuField("title", e.target.value)}
+                      placeholder="Carta Oficial de Menú"
+                      className="w-full px-3.5 py-2.5 bg-neutral-950 border border-neutral-800 rounded-xl text-white text-xs focus:border-[#d7a53b] focus:outline-none"
+                    />
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold text-neutral-300 uppercase tracking-wider">
+                      Subtítulo de la Carta
+                    </label>
+                    <input
+                      type="text"
+                      value={currentVisualMenu.subtitle || ""}
+                      onChange={(e) => updateVisualMenuField("subtitle", e.target.value)}
+                      placeholder="La Vera Cucina Italiana en alta resolución"
+                      className="w-full px-3.5 py-2.5 bg-neutral-950 border border-neutral-800 rounded-xl text-white text-xs focus:border-[#d7a53b] focus:outline-none"
+                    />
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold text-neutral-300 uppercase tracking-wider flex items-center justify-between">
+                      <span>Ruta / Archivo PDF</span>
+                      <Download className="w-3.5 h-3.5 text-[#d7a53b]" />
+                    </label>
+                    <input
+                      type="text"
+                      value={currentVisualMenu.pdfDownloadUrl || ""}
+                      onChange={(e) => updateVisualMenuField("pdfDownloadUrl", e.target.value)}
+                      placeholder="/menu/mamma-roma-menu.pdf"
+                      className="w-full px-3.5 py-2.5 bg-neutral-950 border border-neutral-800 rounded-xl text-white text-xs focus:border-[#d7a53b] focus:outline-none font-mono"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* PANEL 2: GESTOR DE PÁGINAS DE LA CARTA (17 PÁGINAS EN ALTA RESOLUCIÓN) */}
+              <div className="bg-neutral-900 border border-neutral-800 p-6 sm:p-8 rounded-3xl space-y-6 shadow-xl">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-neutral-800 pb-5">
+                  <div>
+                    <h2 className="text-lg font-black text-white flex items-center gap-2">
+                      <FileText className="w-5 h-5 text-[#d7a53b]" />
+                      <span>Páginas de la Carta en Alta Resolución ({currentVisualMenu.pages.length} páginas)</span>
+                    </h2>
+                    <p className="text-xs text-neutral-400 mt-1">
+                      Puedes reemplazar cualquier página con un botón subiendo una foto nueva o agregar/eliminar páginas.
+                    </p>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={handleAddVisualMenuPage}
+                    className="py-2.5 px-4 bg-neutral-800 hover:bg-neutral-700 active:bg-neutral-900 border border-neutral-700 text-white rounded-xl text-xs font-bold uppercase tracking-wider transition shadow flex items-center gap-2"
+                  >
+                    <Plus className="w-4 h-4 text-[#d7a53b]" />
+                    <span>Agregar Página</span>
+                  </button>
+                </div>
+
+                {/* Grid de Páginas */}
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                  {currentVisualMenu.pages.map((page) => (
+                    <div
+                      key={page.id}
+                      className="bg-neutral-950 border border-neutral-800 rounded-2xl p-4 space-y-3 flex flex-col justify-between hover:border-neutral-700 transition"
+                    >
+                      <div className="space-y-3">
+                        <div className="flex items-center justify-between">
+                          <span className="text-xs font-black px-2.5 py-1 rounded-full bg-[#d7a53b] text-[#171919]">
+                            Página {page.pageNumber}
+                          </span>
+
+                          <button
+                            type="button"
+                            onClick={() => handleDeleteVisualMenuPage(page.id)}
+                            disabled={currentVisualMenu.pages.length <= 1}
+                            className="p-1.5 bg-neutral-900 hover:bg-red-950 text-neutral-400 hover:text-red-400 rounded-lg transition disabled:opacity-30 disabled:cursor-not-allowed"
+                            title="Eliminar página"
+                          >
+                            <Trash2 className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-2">
+                          <div>
+                            <label className="text-[10px] font-bold text-neutral-400 uppercase">
+                              Título
+                            </label>
+                            <input
+                              type="text"
+                              value={page.title || ""}
+                              onChange={(e) => updateVisualMenuPage(page.id, { title: e.target.value })}
+                              placeholder="Ej. Desayunos"
+                              className="w-full px-2.5 py-1.5 bg-neutral-900 border border-neutral-800 rounded-lg text-white text-xs focus:border-[#d7a53b] focus:outline-none"
+                            />
+                          </div>
+
+                          <div>
+                            <label className="text-[10px] font-bold text-neutral-400 uppercase">
+                              Sección
+                            </label>
+                            <input
+                              type="text"
+                              value={page.category || ""}
+                              onChange={(e) => updateVisualMenuPage(page.id, { category: e.target.value })}
+                              placeholder="Ej. Entradas"
+                              className="w-full px-2.5 py-1.5 bg-neutral-900 border border-neutral-800 rounded-lg text-white text-xs focus:border-[#d7a53b] focus:outline-none"
+                            />
+                          </div>
+                        </div>
+
+                        {/* Image Uploader for this page */}
+                        <ImageUploader
+                          label="Imagen de la Página"
+                          value={page.image}
+                          onChange={(newUrl) => updateVisualMenuPage(page.id, { image: newUrl })}
+                          helperText="JPG, PNG o WebP en alta resolución"
+                          previewHeight="h-44"
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* PANEL 3: CATÁLOGO DE PLATILLOS DINÁMICOS */}
+              <div className="space-y-6">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-neutral-900 border border-neutral-800 p-6 rounded-3xl">
+                  <div>
+                    <h2 className="text-lg font-black text-white flex items-center gap-2">
+                      <Utensils className="w-5 h-5 text-[#d7a53b]" />
+                      <span>Catálogo de Platillos Dinámicos ({currentBrand.menuItems.length} platillos)</span>
+                    </h2>
+                    <p className="text-xs text-neutral-400 mt-1">
+                      Muestra 1 o 2 platillos de muestra por categoría cuando el modo interactivo esté activado. Puedes agregar o eliminar en cualquier momento.
+                    </p>
+                  </div>
+
+                  <div className="flex items-center gap-3">
+                    <button
+                      onClick={() => setShowAddDishModal(true)}
+                      className="py-2.5 px-4 bg-[#e3252d] hover:bg-[#c91e25] text-white rounded-xl text-xs font-bold uppercase tracking-wider transition shadow flex items-center gap-2"
+                    >
+                      <Plus className="w-4 h-4" />
+                      <span>Agregar Platillo</span>
+                    </button>
+                  </div>
+                </div>
+
+                {/* Search and Category Filter */}
+                <div className="bg-neutral-900 border border-neutral-800 p-4 rounded-2xl flex items-center gap-4">
+                  <Search className="w-4 h-4 text-neutral-400" />
+                  <input
+                    type="text"
+                    value={dishSearch}
+                    onChange={(e) => setDishSearch(e.target.value)}
+                    placeholder="Buscar platillo por nombre o ingrediente..."
+                    className="w-full bg-transparent text-sm text-white placeholder-neutral-500 focus:outline-none"
+                  />
+                </div>
+
+                {/* Dishes Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {currentBrand.menuItems
+                    .filter(
+                      (d) =>
+                        d.name.toLowerCase().includes(dishSearch.toLowerCase()) ||
+                        d.category.toLowerCase().includes(dishSearch.toLowerCase())
+                    )
+                    .map((dish) => (
+                      <div
+                        key={dish.id}
+                        className="bg-neutral-900 border border-neutral-800 rounded-3xl p-5 space-y-4 flex flex-col justify-between"
+                      >
+                        <div className="space-y-3">
+                          <div className="flex items-center justify-between">
+                            <span className="text-[11px] bg-neutral-800 text-neutral-300 px-2.5 py-0.5 rounded-full font-bold">
+                              {dish.category}
+                            </span>
+                            <button
+                              onClick={() => handleDeleteDish(dish.id)}
+                              className="p-1.5 bg-neutral-800 hover:bg-red-950 text-neutral-400 hover:text-red-400 rounded-lg transition"
+                              title="Eliminar platillo"
+                            >
+                              <Trash2 className="w-3.5 h-3.5" />
+                            </button>
+                          </div>
+
+                          <div className="relative h-36 rounded-2xl overflow-hidden bg-neutral-950 border border-neutral-800">
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
+                              src={dish.image}
+                              alt={dish.name}
+                              className="w-full h-full object-cover"
+                            />
+                            <div className="absolute top-2 right-2 bg-emerald-600 text-white text-xs font-black px-2.5 py-1 rounded-lg shadow">
+                              Q{dish.price}
+                            </div>
+                            {dish.badge && (
+                              <div className="absolute top-2 left-2 bg-[#e3252d] text-white text-[10px] font-black uppercase px-2 py-0.5 rounded shadow">
+                                {dish.badge}
+                              </div>
+                            )}
+                          </div>
+
+                          <div>
+                            <h4 className="text-base font-black text-white">{dish.name}</h4>
+                            <p className="text-xs text-neutral-400 mt-1 line-clamp-2">
+                              {dish.description}
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="pt-2 border-t border-neutral-800 flex items-center justify-between text-[11px] text-neutral-400">
+                          <span>ID: {dish.id.slice(0, 10)}</span>
+                          <div className="flex items-center gap-1.5">
+                            {dish.isVegetarian && <span title="Vegetariano">🌱</span>}
+                            {dish.isGlutenFree && <span title="Sin Gluten">🌾</span>}
+                            {dish.isSpicy && <span title="Picante">🌶️</span>}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                </div>
+              </div>
             </div>
-          </div>
-        )}
+          );
+        })()}
 
         {/* TAB 5: SALSAS ARTESANALES (Requirement 7) */}
         {activeTab === "sauces" && (
