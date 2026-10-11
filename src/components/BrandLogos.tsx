@@ -147,9 +147,11 @@ export function MammaRomaGroupLogo({
         <div className="bg-white px-3.5 py-1.5 rounded-2xl shadow-md border border-neutral-300/40 flex items-center justify-center transition-all duration-300 hover:scale-[1.03] hover:shadow-xl">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/images/logos/logo-group.png"
+            src="/images/logos/logo-group.webp"
             alt="Mamma Roma Group"
             className="h-12 sm:h-14 w-auto object-contain"
+            loading="lazy"
+            decoding="async"
             onError={() => setHasError(true)}
           />
         </div>

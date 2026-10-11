@@ -372,7 +372,7 @@ export const BRANDS: Record<BrandId, BrandData> = {
       "description": "Auténtica cocina romana tradicional: pastas frescas artesanales hechas diariamente al huevo, pizzas en horno de leña e ingredientes 100% italianos.",
       "ctaPrimary": "¡Pedí Ahora!",
       "ctaSecondary": "¡Reservá Ahora!",
-      "heroImage": "/images/heroes/hero-mamma-roma.png"
+      "heroImage": "/images/uploads/mr_1791745657050_dsc03753-2.webp"
     },
     "specialties": {
       "badge": "Tradición Artesanal",

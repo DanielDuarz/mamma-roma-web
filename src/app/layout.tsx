@@ -24,6 +24,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" data-brand="mamma-roma">
+      <head>
+        <link
+          rel="preload"
+          as="image"
+          href="/images/uploads/mr_1791745657050_dsc03753-2.webp"
+          // @ts-expect-error fetchPriority in link
+          fetchpriority="high"
+          fetchPriority="high"
+        />
+      </head>
       <body className="antialiased min-h-screen flex flex-col bg-white text-[#171919]">
         <BrandProvider>{children}</BrandProvider>
       </body>

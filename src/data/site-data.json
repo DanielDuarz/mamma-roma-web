@@ -65,7 +65,7 @@
       "description": "Auténtica cocina romana tradicional: pastas frescas artesanales hechas diariamente al huevo, pizzas en horno de leña e ingredientes 100% italianos.",
       "ctaPrimary": "¡Pedí Ahora!",
       "ctaSecondary": "¡Reservá Ahora!",
-      "heroImage": "/images/uploads/mr_1791745657050_dsc03753-2.png"
+      "heroImage": "/images/uploads/mr_1791745657050_dsc03753-2.webp"
     },
     "specialties": {
       "badge": "Tradición Artesanal",
@@ -171,7 +171,7 @@
         "ingredients": "Tomates maduros seleccionados (92%), aceite de oliva virgen extra (5%), cebolla, sal marina, albahaca fresca.",
         "pairing": "Ideal para spaghetti, penne, polenta y bases de pizza.",
         "price": 65,
-        "image": "/images/uploads/mr_1791746814034_dsc08203.png",
+        "image": "/images/uploads/mr_1791746814034_dsc08203.webp",
         "badge": "100% Natural • Sin Preservantes"
       },
       {
@@ -184,7 +184,7 @@
         "pairing": "Perfecto para trofie, gnocchi de papa, bruschettas y ensaladas caprese.",
         "price": 75,
         "badge": "D.O.P. Tradición Genovesa",
-        "image": "/images/uploads/mr_1791746810442_dsc08185.png"
+        "image": "/images/uploads/mr_1791746810442_dsc08185.webp"
       }
     ],
     "locations": [
@@ -331,7 +331,7 @@
       "badge": "Línea Exclusiva Mamma Roma",
       "title": "Nuestra Salsa Es Un Viaje Directo Al Corazón De La Italia 🇮🇹",
       "description": "Tres salsas artesanales envasadas, un mismo compromiso: sabor 100% natural, sin preservantes, preparadas con recetas originales de la nonna.",
-      "heroImage": "/images/uploads/mr_1791748254870_dsc08326-edit.png",
+      "heroImage": "/images/uploads/mr_1791748254870_dsc08326-edit.webp",
       "pill1": "100% Natural",
       "pill2": "Sin conservantes artificiales",
       "pill3": "Tomates e ingredientes seleccionados",

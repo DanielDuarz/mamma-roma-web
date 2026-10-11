@@ -9,8 +9,8 @@ export default function HeroSection() {
   const { brandId, brand, setActiveTab } = useBrand();
   const isMammaRoma = brandId === "mamma-roma";
   const defaultFallbackHero = isMammaRoma
-    ? "/images/heroes/hero-mamma-roma.png"
-    : "/images/heroes/hero-sette-colli.jpg";
+    ? "/images/heroes/hero-mamma-roma.webp"
+    : "/images/heroes/hero-sette-colli.webp";
 
   const [heroImgSrc, setHeroImgSrc] = React.useState(brand.hero.heroImage || defaultFallbackHero);
 
@@ -25,13 +25,22 @@ export default function HeroSection() {
 
   return (
     <section ref={heroRef} className="relative min-h-[90vh] sm:min-h-[95vh] flex items-center justify-center overflow-hidden bg-[#171919] text-white">
+      {/* Priority image preloading hint */}
+      {/* @ts-expect-error React link preload fetchPriority */}
+      <link rel="preload" as="image" href={heroImgSrc} fetchpriority="high" fetchPriority="high" />
+
       {/* Parallax Background */}
       <motion.div className="absolute inset-0 z-0" style={{ y: bgY }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           key={heroImgSrc}
           src={heroImgSrc}
-          alt=""
+          alt={brand.name || "Restaurante Italiano"}
+          loading="eager"
+          decoding="async"
+          // @ts-expect-error fetchPriority attribute in React 18
+          fetchpriority="high"
+          fetchPriority="high"
           onError={() => {
             if (heroImgSrc !== defaultFallbackHero) {
               setHeroImgSrc(defaultFallbackHero);

@@ -10,8 +10,8 @@ export default function StorySection() {
   const isMammaRoma = brandId === "mamma-roma";
 
   const defaultStoryFallback = isMammaRoma
-    ? "/images/heroes/mr-story.jpg"
-    : "/images/locations/sc-convenia.jpg";
+    ? "/images/heroes/mr-story.webp"
+    : "/images/locations/sc-convenia.webp";
 
   const [storyImgSrc, setStoryImgSrc] = React.useState(brand.storyImage || defaultStoryFallback);
 
@@ -68,6 +68,8 @@ export default function StorySection() {
               key={storyImgSrc}
               src={storyImgSrc}
               alt={brand.storyTitle}
+              loading="lazy"
+              decoding="async"
               onError={() => {
                 if (storyImgSrc !== defaultStoryFallback) {
                   setStoryImgSrc(defaultStoryFallback);

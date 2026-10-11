@@ -12,12 +12,8 @@ interface ImageUploaderProps {
 }
 
 async function optimizeImageForUpload(file: File): Promise<File> {
-  // If SVG or GIF or already lightweight (< 500KB), keep as-is
-  if (
-    file.type === "image/svg+xml" ||
-    file.type === "image/gif" ||
-    file.size < 500 * 1024
-  ) {
+  // If SVG or GIF, keep as-is (SVGs are vector, GIFs are animated)
+  if (file.type === "image/svg+xml" || file.type === "image/gif") {
     return file;
   }
 
@@ -47,13 +43,13 @@ async function optimizeImageForUpload(file: File): Promise<File> {
       }
       ctx.drawImage(img, 0, 0, width, height);
 
-      const outputType = file.type === "image/png" ? "image/png" : "image/jpeg";
+      // Auto-compress to WebP (supported by 97%+ browsers, 85-95% smaller than raw PNG)
       canvas.toBlob(
         (blob) => {
-          if (blob && blob.size < file.size) {
-            const cleanName = file.name.replace(/\.[^.]+$/, outputType === "image/png" ? ".png" : ".jpg");
+          if (blob && (blob.size < file.size || file.type === "image/png")) {
+            const cleanName = file.name.replace(/\.[^.]+$/, ".webp");
             const optimized = new File([blob], cleanName, {
-              type: outputType,
+              type: "image/webp",
               lastModified: Date.now(),
             });
             resolve(optimized);
@@ -61,8 +57,8 @@ async function optimizeImageForUpload(file: File): Promise<File> {
             resolve(file);
           }
         },
-        outputType,
-        0.88
+        "image/webp",
+        0.82
       );
     };
     img.onerror = () => {
