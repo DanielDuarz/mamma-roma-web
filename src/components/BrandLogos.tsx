@@ -16,7 +16,7 @@ export function MammaRomaLogo({
       <div className={`flex items-center justify-center select-none ${className}`}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/images/logos/brand-mamma-roma.webp?v=20261013"
+          src="/images/logos/brand-mamma-roma.webp?v=20261013-fixed"
           alt="Mamma Roma Logo"
           width={200}
           height={76}
@@ -84,7 +84,7 @@ export function SetteColliLogo({
       <div className={`flex items-center justify-center select-none ${className}`}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/images/logos/brand-sette-colli.webp?v=20261013"
+          src="/images/logos/brand-sette-colli.webp?v=20261013-fixed"
           alt="Sette Colli Logo"
           width={200}
           height={76}
