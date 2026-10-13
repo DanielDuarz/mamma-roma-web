@@ -16,11 +16,11 @@ export function MammaRomaLogo({
       <div className={`flex items-center justify-center select-none ${className}`}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/images/logos/logo-mamma-roma.webp"
+          src="/images/logos/brand-mamma-roma.webp?v=20261013"
           alt="Mamma Roma Logo"
-          width={180}
-          height={68}
-          className="h-full w-auto object-contain max-h-14 sm:max-h-16 transition-transform duration-300 group-hover:scale-105"
+          width={200}
+          height={76}
+          className="h-full w-auto object-contain max-h-16 md:max-h-20 transition-transform duration-300 group-hover:scale-105"
           onError={() => setHasError(true)}
         />
       </div>
@@ -84,11 +84,11 @@ export function SetteColliLogo({
       <div className={`flex items-center justify-center select-none ${className}`}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/images/logos/logo-sette-colli.webp"
+          src="/images/logos/brand-sette-colli.webp?v=20261013"
           alt="Sette Colli Logo"
-          width={180}
-          height={68}
-          className="h-full w-auto object-contain max-h-14 sm:max-h-16 transition-transform duration-300 group-hover:scale-105"
+          width={200}
+          height={76}
+          className="h-full w-auto object-contain max-h-16 md:max-h-20 transition-transform duration-300 group-hover:scale-105"
           onError={() => setHasError(true)}
         />
       </div>

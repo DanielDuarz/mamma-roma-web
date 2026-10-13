@@ -66,8 +66,8 @@ export default function Navbar() {
               onClick={() => handleBrandSwitch("mamma-roma")}
               className={`group flex items-center p-2 sm:p-2.5 rounded-2xl transition-all duration-300 ${
                 isMammaRoma
-                  ? "opacity-100 ring-2 ring-[#e3252d] bg-black/70 shadow-xl scale-105"
-                  : "opacity-60 hover:opacity-100 grayscale hover:grayscale-0 hover:bg-neutral-900/60"
+                  ? "opacity-100 ring-2 ring-[#e3252d] bg-black/80 shadow-2xl scale-105"
+                  : "opacity-80 hover:opacity-100 hover:scale-105 bg-black/40 hover:bg-black/70 border border-neutral-700/60"
               }`}
               title="Cambiar a Mamma Roma (Cocina Tradicional)"
               aria-label="Seleccionar Mamma Roma"
@@ -83,8 +83,8 @@ export default function Navbar() {
               onClick={() => handleBrandSwitch("sette-colli")}
               className={`group flex items-center p-2 sm:p-2.5 rounded-2xl transition-all duration-300 ${
                 !isMammaRoma
-                  ? "opacity-100 ring-2 ring-[#bf241e] bg-black/70 shadow-xl scale-105"
-                  : "opacity-60 hover:opacity-100 grayscale hover:grayscale-0 hover:bg-neutral-900/60"
+                  ? "opacity-100 ring-2 ring-[#bf241e] bg-black/80 shadow-2xl scale-105"
+                  : "opacity-80 hover:opacity-100 hover:scale-105 bg-black/40 hover:bg-black/70 border border-neutral-700/60"
               }`}
               title="Cambiar a Sette Colli (Pizzas Artesanales)"
               aria-label="Seleccionar Sette Colli"
