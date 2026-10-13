@@ -25,59 +25,32 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 w-full bg-[#171919] text-white shadow-md border-b border-neutral-800 transition-colors duration-300">
-      {/* Top Brand Switcher Bar */}
+      {/* Top Contact Bar */}
       <div className="border-b border-neutral-800/80 bg-black/60 px-4 py-2 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto flex items-center justify-between text-xs">
-          <div className="flex items-center gap-2">
-            <span className="text-neutral-400 hidden sm:inline">Selecciona la experiencia:</span>
-            
-            {/* Brand Toggle Buttons */}
-            <div className="inline-flex rounded-full bg-neutral-900 p-1 border border-neutral-700">
-              <button
-                onClick={() => handleBrandSwitch("mamma-roma")}
-                className={`flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold transition-all duration-200 ${
-                  isMammaRoma
-                    ? "bg-[#e3252d] text-white shadow-sm ring-1 ring-white/20"
-                    : "text-neutral-400 hover:text-white"
-                }`}
-                title="Cambiar a Mamma Roma"
-              >
-                <span className="w-2 h-2 rounded-full bg-[#006a34]" />
-                Mamma Roma
-              </button>
-
-              <button
-                onClick={() => handleBrandSwitch("sette-colli")}
-                className={`flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold transition-all duration-200 ${
-                  !isMammaRoma
-                    ? "bg-[#bf241e] text-white shadow-sm ring-1 ring-white/20"
-                    : "text-neutral-400 hover:text-white"
-                }`}
-                title="Cambiar a Sette Colli"
-              >
-                <span className="w-2 h-2 rounded-full bg-[#774b1b]" />
-                Sette Colli (Pizzas)
-              </button>
-            </div>
+        <div className="max-w-7xl mx-auto flex items-center justify-between sm:justify-end gap-3 text-xs">
+          <div className="flex items-center gap-2 text-neutral-400">
+            <span className="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="font-medium text-neutral-300">Pedidos & Reservaciones:</span>
           </div>
 
-          {/* Quick contact / phone */}
           <div className="flex items-center gap-4">
             <a
               href={`tel:${brand.phone}`}
               className="flex items-center gap-1.5 text-neutral-300 hover:text-white transition-colors"
+              title="Llamar para ordenar"
             >
               <Phone className="w-3.5 h-3.5 text-[#d7a53b]" />
-              <span className="font-semibold">{brand.phone}</span>
+              <span className="font-bold tracking-wide text-white">{brand.phone}</span>
             </a>
             <a
               href={`https://wa.me/${brand.whatsapp}?text=${encodeURIComponent(`¡Hola ${brand.name}! Deseo consultar el menú y ordenar.`)}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden md:flex items-center gap-1 bg-[#006a34] hover:bg-[#00552a] text-white px-2.5 py-0.5 rounded-full text-[11px] font-medium transition"
+              className="flex items-center gap-1.5 bg-[#006a34] hover:bg-[#00552a] text-white px-3 py-1 rounded-full text-[11px] font-semibold transition-all shadow-sm hover:scale-105 active:scale-95"
+              title="Contactar por WhatsApp"
             >
-              <MessageCircle className="w-3 h-3" />
-              WhatsApp
+              <MessageCircle className="w-3.5 h-3.5" />
+              <span>WhatsApp</span>
             </a>
           </div>
         </div>
@@ -86,33 +59,35 @@ export default function Navbar() {
       {/* Main Navigation Bar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          {/* Dual Brand Logos (Directly Clickable) */}
-          <div className="flex items-center gap-6">
+          {/* Dual Brand Logos (Directly Clickable Brand Switcher) */}
+          <div className="flex items-center gap-3 sm:gap-6">
             {/* Mamma Roma Logo Button */}
             <button
               onClick={() => handleBrandSwitch("mamma-roma")}
-              className={`group flex items-center p-1.5 rounded-lg transition-all duration-200 ${
+              className={`group flex items-center p-1.5 sm:p-2 rounded-xl transition-all duration-300 ${
                 isMammaRoma
-                  ? "opacity-100 ring-2 ring-[#e3252d]/60 bg-neutral-900/60"
-                  : "opacity-45 hover:opacity-85 grayscale hover:grayscale-0"
+                  ? "opacity-100 ring-2 ring-[#e3252d] bg-neutral-900/80 shadow-md scale-105"
+                  : "opacity-45 hover:opacity-90 grayscale hover:grayscale-0 hover:bg-neutral-900/40"
               }`}
-              title="Ir a Mamma Roma"
+              title="Cambiar a Mamma Roma (Cocina Tradicional)"
+              aria-label="Seleccionar Mamma Roma"
             >
               <MammaRomaLogo className="h-10 sm:h-12" />
             </button>
 
             {/* Subtle Divider */}
-            <div className="h-8 w-px bg-neutral-700 hidden sm:block" />
+            <div className="h-8 w-px bg-neutral-700/80" />
 
             {/* Sette Colli Logo Button */}
             <button
               onClick={() => handleBrandSwitch("sette-colli")}
-              className={`group flex items-center p-1.5 rounded-lg transition-all duration-200 ${
+              className={`group flex items-center p-1.5 sm:p-2 rounded-xl transition-all duration-300 ${
                 !isMammaRoma
-                  ? "opacity-100 ring-2 ring-[#bf241e]/60 bg-neutral-900/60"
-                  : "opacity-45 hover:opacity-85 grayscale hover:grayscale-0"
+                  ? "opacity-100 ring-2 ring-[#bf241e] bg-neutral-900/80 shadow-md scale-105"
+                  : "opacity-45 hover:opacity-90 grayscale hover:grayscale-0 hover:bg-neutral-900/40"
               }`}
-              title="Ir a Sette Colli (Pizzas)"
+              title="Cambiar a Sette Colli (Pizzas Artesanales)"
+              aria-label="Seleccionar Sette Colli"
             >
               <SetteColliLogo className="h-10 sm:h-12" />
             </button>
