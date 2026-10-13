@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 
 export function MammaRomaLogo({
-  className = "h-10 sm:h-12",
+  className = "h-12 sm:h-14 md:h-16",
   isLight = false,
 }: {
   className?: string;
@@ -18,9 +18,9 @@ export function MammaRomaLogo({
         <img
           src="/images/logos/logo-mamma-roma.webp"
           alt="Mamma Roma Logo"
-          width={120}
-          height={48}
-          className="h-full w-auto object-contain max-h-12 transition-transform duration-300 group-hover:scale-105"
+          width={180}
+          height={68}
+          className="h-full w-auto object-contain max-h-14 sm:max-h-16 transition-transform duration-300 group-hover:scale-105"
           onError={() => setHasError(true)}
         />
       </div>
@@ -71,7 +71,7 @@ export function MammaRomaLogo({
 }
 
 export function SetteColliLogo({
-  className = "h-10 sm:h-12",
+  className = "h-12 sm:h-14 md:h-16",
   isLight = false,
 }: {
   className?: string;
@@ -86,9 +86,9 @@ export function SetteColliLogo({
         <img
           src="/images/logos/logo-sette-colli.webp"
           alt="Sette Colli Logo"
-          width={120}
-          height={48}
-          className="h-full w-auto object-contain max-h-12 transition-transform duration-300 group-hover:scale-105"
+          width={180}
+          height={68}
+          className="h-full w-auto object-contain max-h-14 sm:max-h-16 transition-transform duration-300 group-hover:scale-105"
           onError={() => setHasError(true)}
         />
       </div>

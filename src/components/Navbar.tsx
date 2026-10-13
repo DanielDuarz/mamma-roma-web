@@ -58,38 +58,38 @@ export default function Navbar() {
 
       {/* Main Navigation Bar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between min-h-[5.5rem] py-2">
           {/* Dual Brand Logos (Directly Clickable Brand Switcher) */}
           <div className="flex items-center gap-3 sm:gap-6">
             {/* Mamma Roma Logo Button */}
             <button
               onClick={() => handleBrandSwitch("mamma-roma")}
-              className={`group flex items-center p-1.5 sm:p-2 rounded-xl transition-all duration-300 ${
+              className={`group flex items-center p-2 sm:p-2.5 rounded-2xl transition-all duration-300 ${
                 isMammaRoma
-                  ? "opacity-100 ring-2 ring-[#e3252d] bg-neutral-900/80 shadow-md scale-105"
-                  : "opacity-45 hover:opacity-90 grayscale hover:grayscale-0 hover:bg-neutral-900/40"
+                  ? "opacity-100 ring-2 ring-[#e3252d] bg-black/70 shadow-xl scale-105"
+                  : "opacity-60 hover:opacity-100 grayscale hover:grayscale-0 hover:bg-neutral-900/60"
               }`}
               title="Cambiar a Mamma Roma (Cocina Tradicional)"
               aria-label="Seleccionar Mamma Roma"
             >
-              <MammaRomaLogo className="h-10 sm:h-12" />
+              <MammaRomaLogo className="h-12 sm:h-14 md:h-16" />
             </button>
 
             {/* Subtle Divider */}
-            <div className="h-8 w-px bg-neutral-700/80" />
+            <div className="h-10 w-px bg-neutral-700/80" />
 
             {/* Sette Colli Logo Button */}
             <button
               onClick={() => handleBrandSwitch("sette-colli")}
-              className={`group flex items-center p-1.5 sm:p-2 rounded-xl transition-all duration-300 ${
+              className={`group flex items-center p-2 sm:p-2.5 rounded-2xl transition-all duration-300 ${
                 !isMammaRoma
-                  ? "opacity-100 ring-2 ring-[#bf241e] bg-neutral-900/80 shadow-md scale-105"
-                  : "opacity-45 hover:opacity-90 grayscale hover:grayscale-0 hover:bg-neutral-900/40"
+                  ? "opacity-100 ring-2 ring-[#bf241e] bg-black/70 shadow-xl scale-105"
+                  : "opacity-60 hover:opacity-100 grayscale hover:grayscale-0 hover:bg-neutral-900/60"
               }`}
               title="Cambiar a Sette Colli (Pizzas Artesanales)"
               aria-label="Seleccionar Sette Colli"
             >
-              <SetteColliLogo className="h-10 sm:h-12" />
+              <SetteColliLogo className="h-12 sm:h-14 md:h-16" />
             </button>
           </div>
 
