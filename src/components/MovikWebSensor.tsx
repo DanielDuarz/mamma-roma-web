@@ -61,11 +61,21 @@ export function MovikWebSensor() {
 
       const sendPageview = (customPath?: string, customLabel?: string) => {
         try {
+          const rawHash = window.location.hash || "";
+          const path = customPath || (rawHash ? `/${rawHash}` : window.location.pathname || "/");
+
+          // Session deduplication: only record 1 pageview per unique section per session
+          const visitedRaw = sessionStorage.getItem("movik_mr_visited_paths") || "[]";
+          const visitedList: string[] = JSON.parse(visitedRaw);
+          if (visitedList.includes(path)) {
+            return;
+          }
+          visitedList.push(path);
+          sessionStorage.setItem("movik_mr_visited_paths", JSON.stringify(visitedList));
+
           const eventId = `pv_${Date.now()}_${Math.random()
             .toString(36)
             .slice(2, 6)}`;
-          const rawHash = window.location.hash || "";
-          const path = customPath || (rawHash ? `/${rawHash}` : window.location.pathname || "/");
           const label =
             customLabel ||
             (path === "/"
@@ -128,9 +138,13 @@ export function MovikWebSensor() {
         attributeFilter: ["data-brand"],
       });
 
-      // Error listener
+      // Error listener with circuit breaker (max 3 per session)
       const onError = (event: ErrorEvent) => {
         try {
+          const errCnt = Number(sessionStorage.getItem("movik_mr_err_cnt") || "0");
+          if (errCnt >= 3) return;
+          sessionStorage.setItem("movik_mr_err_cnt", String(errCnt + 1));
+
           const issueId = `iss_${Date.now().toString(36)}_${Math.random()
             .toString(36)
             .slice(2, 5)}`;
