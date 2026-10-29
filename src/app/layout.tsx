@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { BrandProvider } from "@/context/BrandContext";
+import { MovikWebSensor } from "@/components/MovikWebSensor";
 
 export const metadata: Metadata = {
   title: "Mamma Roma & Sette Colli | La Vera Cucina Italiana en Guatemala",
@@ -35,6 +36,7 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased min-h-screen flex flex-col bg-white text-[#171919]">
+        <MovikWebSensor />
         <BrandProvider>{children}</BrandProvider>
       </body>
     </html>
