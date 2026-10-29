@@ -22,16 +22,24 @@ function getNetlifyStore() {
   return null;
 }
 
+const STATIC_BUNDLED_UPLOADS = new Set([
+  "/images/uploads/mr_1791745657050_dsc03753-2.png",
+  "/images/uploads/mr_1791746810442_dsc08185.png",
+  "/images/uploads/mr_1791746814034_dsc08203.png",
+  "/images/uploads/mr_1791748254870_dsc08326-edit.png",
+  "/images/uploads/mr_1791755299023_dsc08326-edit.png",
+]);
+
 function autoMigrateImageUrls<T>(obj: T): T {
   if (typeof obj === "string") {
-    if (obj.startsWith("/images/uploads/") && obj.endsWith(".png")) {
+    if (STATIC_BUNDLED_UPLOADS.has(obj)) {
       return obj.replace(/\.png$/, ".webp") as unknown as T;
     }
-    if (obj.startsWith("/images/dishes/") && obj.endsWith(".jpg")) {
-      return obj.replace(/\.jpg$/, ".webp") as unknown as T;
-    }
-    if (obj === "/images/heroes/mr-story.jpg") {
-      return "/images/heroes/mr-story.webp" as unknown as T;
+    if (
+      (obj.startsWith("/images/dishes/") || obj.startsWith("/images/heroes/")) &&
+      (obj.endsWith(".jpg") || obj.endsWith(".png"))
+    ) {
+      return obj.replace(/\.(jpg|png)$/, ".webp") as unknown as T;
     }
     if (obj === "/images/logos/logo-group.png") {
       return "/images/logos/logo-group.webp" as unknown as T;

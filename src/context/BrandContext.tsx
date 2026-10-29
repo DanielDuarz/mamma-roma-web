@@ -1,9 +1,46 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useState, useEffect, useCallback } from "react";
 import { BrandId, NavTabId, BrandData, MenuItem, BRANDS } from "@/data/brandsData";
 
 const LOCAL_STORAGE_DATA_KEY = "mr_site_dynamic_brands_data";
+
+const STATIC_BUNDLED_UPLOADS = new Set([
+  "/images/uploads/mr_1791745657050_dsc03753-2.png",
+  "/images/uploads/mr_1791746810442_dsc08185.png",
+  "/images/uploads/mr_1791746814034_dsc08203.png",
+  "/images/uploads/mr_1791748254870_dsc08326-edit.png",
+  "/images/uploads/mr_1791755299023_dsc08326-edit.png",
+]);
+
+function autoMigrateBrandsUrls<T>(obj: T): T {
+  if (typeof obj === "string") {
+    if (STATIC_BUNDLED_UPLOADS.has(obj)) {
+      return obj.replace(/\.png$/, ".webp") as unknown as T;
+    }
+    if (
+      (obj.startsWith("/images/dishes/") || obj.startsWith("/images/heroes/")) &&
+      (obj.endsWith(".jpg") || obj.endsWith(".png"))
+    ) {
+      return obj.replace(/\.(jpg|png)$/, ".webp") as unknown as T;
+    }
+    if (obj === "/images/logos/logo-group.png") {
+      return "/images/logos/logo-group.webp" as unknown as T;
+    }
+    return obj;
+  }
+  if (Array.isArray(obj)) {
+    return obj.map(autoMigrateBrandsUrls) as unknown as T;
+  }
+  if (obj && typeof obj === "object") {
+    const res: Record<string, unknown> = {};
+    for (const [k, v] of Object.entries(obj)) {
+      res[k] = autoMigrateBrandsUrls(v);
+    }
+    return res as unknown as T;
+  }
+  return obj;
+}
 
 interface BrandContextType {
   brandId: BrandId;
@@ -26,39 +63,12 @@ export function BrandProvider({ children }: { children: React.ReactNode }) {
   const [brandId, setBrandIdState] = useState<BrandId>("mamma-roma");
   const [activeTab, setActiveTabState] = useState<NavTabId>("inicio");
   const [lightboxItem, setLightboxItem] = useState<MenuItem | null>(null);
-  const [brands, setBrands] = useState<Record<BrandId, BrandData>>(BRANDS);
-
-function autoMigrateBrandsUrls<T>(obj: T): T {
-  if (typeof obj === "string") {
-    if (obj.startsWith("/images/uploads/") && obj.endsWith(".png")) {
-      return obj.replace(/\.png$/, ".webp") as unknown as T;
-    }
-    if (obj.startsWith("/images/dishes/") && obj.endsWith(".jpg")) {
-      return obj.replace(/\.jpg$/, ".webp") as unknown as T;
-    }
-    if (obj === "/images/heroes/mr-story.jpg") {
-      return "/images/heroes/mr-story.webp" as unknown as T;
-    }
-    if (obj === "/images/logos/logo-group.png") {
-      return "/images/logos/logo-group.webp" as unknown as T;
-    }
-    return obj;
-  }
-  if (Array.isArray(obj)) {
-    return obj.map(autoMigrateBrandsUrls) as unknown as T;
-  }
-  if (obj && typeof obj === "object") {
-    const res: Record<string, unknown> = {};
-    for (const [k, v] of Object.entries(obj)) {
-      res[k] = autoMigrateBrandsUrls(v);
-    }
-    return res as unknown as T;
-  }
-  return obj;
-}
+  const [brands, setBrands] = useState<Record<BrandId, BrandData>>(() =>
+    autoMigrateBrandsUrls(BRANDS)
+  );
 
   // Sync with /api/data on load
-  const refreshSiteData = async () => {
+  const refreshSiteData = useCallback(async () => {
     try {
       const res = await fetch(`/api/data?t=${Date.now()}`, { cache: "no-store" });
       if (res.ok) {
@@ -91,11 +101,11 @@ function autoMigrateBrandsUrls<T>(obj: T): T {
     } catch {
       // ignore
     }
-  };
+  }, []);
 
   useEffect(() => {
     refreshSiteData();
-  }, []);
+  }, [refreshSiteData]);
 
   const brand = brands[brandId] || BRANDS[brandId];
 

@@ -24,26 +24,42 @@ interface VisualMenuViewerProps {
   isMammaRoma: boolean;
 }
 
-const CATEGORY_SHORTCUTS = [
-  { label: "Todas (17 págs)", page: 1 },
-  { label: "Desayunos", page: 2 },
-  { label: "Entradas", page: 3 },
-  { label: "Carnes & Pescados", page: 4 },
-  { label: "Pastas & Risottos", page: 6 },
-  { label: "Pizzas", page: 9 },
-  { label: "Panini & Burgers", page: 12 },
-  { label: "Lunch Mamma Roma", page: 13 },
-  { label: "Postres", page: 14 },
-  { label: "Bebidas & Caffé", page: 15 },
-  { label: "Promociones", page: 16 },
-  { label: "Ubicaciones & QR", page: 17 },
-];
-
 export default function VisualMenuViewer({ brand, isMammaRoma }: VisualMenuViewerProps) {
   const visualMenu = brand.visualMenu;
   const pages = useMemo<VisualMenuPage[]>(() => {
     return visualMenu?.pages && visualMenu.pages.length > 0 ? visualMenu.pages : [];
   }, [visualMenu?.pages]);
+
+  const categoryShortcuts = useMemo(() => {
+    if (pages.length === 17) {
+      return [
+        { label: `Todas (${pages.length} págs)`, page: 1 },
+        { label: "Desayunos", page: 2 },
+        { label: "Entradas", page: 3 },
+        { label: "Carnes & Pescados", page: 4 },
+        { label: "Pastas & Risottos", page: 6 },
+        { label: "Pizzas", page: 9 },
+        { label: "Panini & Burgers", page: 12 },
+        { label: isMammaRoma ? "Lunch Mamma Roma" : "Lunch Ejecutivo", page: 13 },
+        { label: "Postres", page: 14 },
+        { label: "Bebidas & Caffé", page: 15 },
+        { label: "Promociones", page: 16 },
+        { label: "Ubicaciones & QR", page: 17 },
+      ];
+    }
+    const shortcuts = [{ label: `Todas (${pages.length} págs)`, page: 1 }];
+    const seen = new Set<string>();
+    pages.forEach((p, idx) => {
+      const cat = (p.category || p.title || `Página ${idx + 1}`).trim();
+      if (cat && !seen.has(cat) && cat.toLowerCase() !== "portada") {
+        seen.add(cat);
+        shortcuts.push({ label: cat, page: idx + 1 });
+      }
+    });
+    return shortcuts;
+  }, [pages, isMammaRoma]);
+
+  const pdfDownloadFilename = isMammaRoma ? "Mamma-Roma-Menu.pdf" : "Sette-Colli-Menu.pdf";
 
   const [activeCategoryIndex, setActiveCategoryIndex] = useState<number>(0);
   const [currentPageIndex, setCurrentPageIndex] = useState<number>(0);
@@ -145,7 +161,7 @@ export default function VisualMenuViewer({ brand, isMammaRoma }: VisualMenuViewe
           <div className="flex flex-wrap items-center gap-3">
             <a
               href={pdfUrl}
-              download="Mamma-Roma-Menu.pdf"
+              download={pdfDownloadFilename}
               target="_blank"
               rel="noopener noreferrer"
               className="px-5 py-3 rounded-full bg-neutral-800 hover:bg-neutral-700 active:bg-neutral-900 border border-neutral-600 text-white text-xs font-bold transition flex items-center gap-2 shadow-sm"
@@ -178,7 +194,7 @@ export default function VisualMenuViewer({ brand, isMammaRoma }: VisualMenuViewe
               <ListFilter className="w-3 h-3 text-[#d7a53b]" />
               <span>Ir a:</span>
             </span>
-            {CATEGORY_SHORTCUTS.map((shortcut, idx) => {
+            {categoryShortcuts.map((shortcut, idx) => {
               const isActive = activeCategoryIndex === idx;
               return (
                 <button
@@ -422,7 +438,7 @@ export default function VisualMenuViewer({ brand, isMammaRoma }: VisualMenuViewe
 
                 <a
                   href={pdfUrl}
-                  download="Mamma-Roma-Menu.pdf"
+                  download={pdfDownloadFilename}
                   className="p-2 bg-neutral-800 hover:bg-neutral-700 rounded-full transition text-neutral-200 hidden sm:flex items-center justify-center"
                   title="Descargar PDF"
                 >

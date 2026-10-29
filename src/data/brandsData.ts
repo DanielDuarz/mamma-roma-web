@@ -236,7 +236,7 @@ export const BRANDS: Record<BrandId, BrandData> = {
     "subtitle": "El auténtico sabor de Italia en Guatemala",
     "storyTitle": "Nuestro Legado",
     "storyDescription": "En Mamma Roma, nos enorgullecemos de nuestras auténticas recetas italianas, ingredientes frescos y cálida hospitalidad. Un restaurante italiano que se siente como en casa. Cada plato es un tributo a las recetas familiares de las nonnas transmitidas con amor.",
-    "storyImage": "/images/heroes/mr-story.jpg",
+    "storyImage": "/images/heroes/mr-story.webp",
     "phone": "5017-5905",
     "whatsapp": "50250175905",
     "whatsappDefaultMessage": "¡Hola Mamma Roma! 🍝 Deseo consultar el menú y ordenar comida italiana.",
@@ -264,7 +264,7 @@ export const BRANDS: Record<BrandId, BrandData> = {
         "title": "Jueves de Pasta & Vino Italiano",
         "subtitle": "50% de descuento en botella de vino seleccionada",
         "description": "Todos los jueves del mes, al ordenar 2 platos de nuestras pastas frescas artesanales al huevo, disfruta de una botella de vino tinto o blanco italiano seleccionado a mitad de precio para acompañar tu cena.",
-        "image": "/images/dishes/mr-tagliatelle-uovo.jpg",
+        "image": "/images/dishes/mr-tagliatelle-uovo.webp",
         "badge": "Jueves Especial",
         "validUntil": "Válido todos los jueves de este mes",
         "ctaText": "Reservar o Pedir Promoción",
@@ -276,7 +276,7 @@ export const BRANDS: Record<BrandId, BrandData> = {
         "title": "Combo Pranzo Di Famiglia",
         "subtitle": "Banquete familiar para 4-5 personas",
         "description": "Incluye una fuente grande de Lasagna Tradizionale a la Bolognese, Ensalada Caprese con Mozzarella Fior di Latte, canasta de Focaccia al romero recién horneada y 4 porciones de Tiramisú clásico.",
-        "image": "/images/dishes/mr-lasagna-forno.jpg",
+        "image": "/images/dishes/mr-lasagna-forno.webp",
         "badge": "Combo Familiar",
         "validUntil": "Disponible de Martes a Domingo",
         "ctaText": "Ordenar Combo Familiar",
@@ -288,7 +288,7 @@ export const BRANDS: Record<BrandId, BrandData> = {
       "badge": "Ofertas & Novedades Exclusivas",
       "title": "Promociones del Mes en Mamma Roma",
       "description": "Celebra los auténticos sabores de Roma con nuestras promociones especiales: días de pasta & vino, banquetes familiares y lanzamientos culinarios exclusivos.",
-      "heroImage": "/images/heroes/mr-story.jpg",
+      "heroImage": "/images/heroes/mr-story.webp",
       "pill1": "Disponibles para comedor & a domicilio",
       "pill2": "Ingredientes italianos 100% auténticos"
     },
@@ -383,7 +383,7 @@ export const BRANDS: Record<BrandId, BrandData> = {
           "id": "pastas",
           "title": "Pastas Frescas al Huevo",
           "description": "Disfruta la auténtica tradición italiana en cada bocado. Pastas frescas elaboradas artesanalmente cada mañana con sémola de trigo duro importada y acompañadas de salsas de cocción lenta y carnes selectas.",
-          "image": "/images/dishes/mr-tagliatelle-uovo.jpg",
+          "image": "/images/dishes/mr-tagliatelle-uovo.webp",
           "badge": "Elaboración Diaria",
           "reverse": false
         },
@@ -391,7 +391,7 @@ export const BRANDS: Record<BrandId, BrandData> = {
           "id": "pizzas",
           "title": "Pizzas en Horno de Leña",
           "description": "La tradición italiana, rebanada a rebanada. Horneadas al punto perfecto con leña de roble, salsa de tomates San Marzano, mozzarella Fior di Latte y finas hierbas frescas.",
-          "image": "/images/dishes/mr-pizza-horno-lena.jpg",
+          "image": "/images/dishes/mr-pizza-horno-lena.webp",
           "badge": "Horno de Leña",
           "reverse": true
         },
@@ -399,7 +399,7 @@ export const BRANDS: Record<BrandId, BrandData> = {
           "id": "risotto-carnes",
           "title": "Risotto ai Porcini & Carnes Selectas",
           "description": "Auténtico arroz carnaroli cremoso con hongos silvestres porcini y finas láminas de trufa negra, además de exquisitas opciones de tagliata y parrilladas italianas para compartir.",
-          "image": "/images/dishes/mr-risotto-porcini.jpg",
+          "image": "/images/dishes/mr-risotto-porcini.webp",
           "badge": "Chef Choice",
           "reverse": false
         }
@@ -456,7 +456,7 @@ export const BRANDS: Record<BrandId, BrandData> = {
         "description": "Generosa selección de cortes de carne de res, pollo al romero, salchichas italianas artesanales y vegetales asados al fuego.",
         "price": 220,
         "badge": "Para Compartir",
-        "image": "/images/dishes/mr-parrilla-compartir.jpg"
+        "image": "/images/dishes/mr-parrilla-compartir.webp"
       },
       {
         "id": "mr-ent-antipasto",
@@ -465,7 +465,7 @@ export const BRANDS: Record<BrandId, BrandData> = {
         "description": "Exclusiva tabla de quesos italianos importados con pecorino, mozzarella, salame milano y miel de abeja natural.",
         "price": 199,
         "badge": "Favorito",
-        "image": "/images/dishes/mr-entradas.jpg"
+        "image": "/images/dishes/mr-entradas.webp"
       },
       {
         "id": "mr-pas-2",
@@ -474,7 +474,7 @@ export const BRANDS: Record<BrandId, BrandData> = {
         "description": "Auténtica carbonara romana: yemas de huevo pasteurizadas, guanciale crujiente, Pecorino Romano D.O.P. y pimienta negra molida al momento.",
         "price": 95,
         "badge": "100% Romana",
-        "image": "/images/dishes/mr-carbonara.jpg"
+        "image": "/images/dishes/mr-carbonara.webp"
       },
       {
         "id": "mr-pas-tagliatelle",
@@ -483,7 +483,7 @@ export const BRANDS: Record<BrandId, BrandData> = {
         "description": "Pasta fresca al huevo salteada en cremosa salsa de hongos de estación, acompañada de tiernos medallones de lomo de res sellados.",
         "price": 115,
         "badge": "Recomendado",
-        "image": "/images/dishes/mr-tagliatelle-uovo.jpg"
+        "image": "/images/dishes/mr-tagliatelle-uovo.webp"
       },
       {
         "id": "mr-piz-horno",
@@ -492,7 +492,7 @@ export const BRANDS: Record<BrandId, BrandData> = {
         "description": "Masa de fermentación lenta horneada a la leña con salsa de tomates San Marzano, mozzarella fundida y salchicha italiana artesanal.",
         "price": 105,
         "badge": "Al Horno de Leña",
-        "image": "/images/dishes/mr-pizza-horno-lena.jpg"
+        "image": "/images/dishes/mr-pizza-horno-lena.webp"
       },
       {
         "id": "mr-piz-bianca",
@@ -500,7 +500,7 @@ export const BRANDS: Record<BrandId, BrandData> = {
         "category": "Pizzas",
         "description": "Base de mozzarella, gorgonzola, fontina y parmigiano reggiano con toque de miel de trufa y nueces.",
         "price": 115,
-        "image": "/images/dishes/mr-pizza-2.jpg",
+        "image": "/images/dishes/mr-pizza-2.webp",
         "isVegetarian": true
       },
       {
@@ -510,7 +510,7 @@ export const BRANDS: Record<BrandId, BrandData> = {
         "description": "Bizcochos savoiardi bañados en auténtico espresso italiano y licor, capas de crema sedosa de mascarpone y cacao amargo.",
         "price": 52,
         "badge": "Imperdible",
-        "image": "/images/dishes/mr-postre.jpg",
+        "image": "/images/dishes/mr-postre.webp",
         "isVegetarian": true
       },
       {
@@ -519,7 +519,7 @@ export const BRANDS: Record<BrandId, BrandData> = {
         "category": "Postres",
         "description": "Budín italiano con nata y vainilla natural con reducción de frutos rojos y jalea artesanal.",
         "price": 55,
-        "image": "/images/dishes/mr-postre.jpg",
+        "image": "/images/dishes/mr-postre.webp",
         "isVegetarian": true
       },
       {
@@ -712,7 +712,7 @@ export const BRANDS: Record<BrandId, BrandData> = {
         "title": "Martes di Pizza Napoletana 2x1",
         "subtitle": "Segunda pizza clásica gratis",
         "description": "Cada martes, ordena tu pizza favorita horneada a la leña de roble a 450°C y recibe una Pizza Margherita o Marinara tradicional completamente gratis.",
-        "image": "/images/dishes/sc-pizza-margherita.jpg",
+        "image": "/images/dishes/sc-pizza-margherita.webp",
         "badge": "2x1 Martes",
         "validUntil": "Todos los martes del mes",
         "ctaText": "Pedir 2x1 de Pizzas",
@@ -724,7 +724,7 @@ export const BRANDS: Record<BrandId, BrandData> = {
         "title": "Nuevo Lanzamiento: Pizza Tartufata Stagionale",
         "subtitle": "Edición limitada del mes",
         "description": "Masa madre viva de 72 horas con crema de trufa negra de Umbría, mozzarella Fior di Latte, hongos porcini salteados y lascas de Parmigiano Reggiano 24 meses.",
-        "image": "/images/dishes/sc-pizza-carpaccio.jpg",
+        "image": "/images/dishes/sc-pizza-carpaccio.webp",
         "badge": "Nuevo Lanzamiento",
         "validUntil": "Hasta fin de mes",
         "ctaText": "Probar Edición Limitada",
@@ -736,7 +736,7 @@ export const BRANDS: Record<BrandId, BrandData> = {
       "badge": "Ofertas & Novedades Exclusivas",
       "title": "Promociones del Mes en Sette Colli",
       "description": "Disfruta el auténtico fuego y la masa madre viva con nuestros 2x1 en pizzas seleccionadas, lanzamientos de autor y combos especiales de horno de leña.",
-      "heroImage": "/images/heroes/hero-sette-colli.jpg",
+      "heroImage": "/images/heroes/hero-sette-colli.webp",
       "pill1": "Disponibles para comedor & a domicilio",
       "pill2": "Ingredientes italianos 100% auténticos"
     },
@@ -815,7 +815,7 @@ export const BRANDS: Record<BrandId, BrandData> = {
       "description": "72 horas de fermentación lenta, masa madre viva, ingredientes D.O.P. y cocción en horno de leña a 450°C. Siente la magia de Roma en cada bocado.",
       "ctaPrimary": "¡Pedir Pizza Ahora!",
       "ctaSecondary": "¡Reservá Tu Mesa!",
-      "heroImage": "/images/heroes/hero-sette-colli.jpg"
+      "heroImage": "/images/heroes/hero-sette-colli.webp"
     },
     "specialties": {
       "badge": "Maestría Pizzaiola a la Leña",
@@ -826,7 +826,7 @@ export const BRANDS: Record<BrandId, BrandData> = {
           "id": "sc-carpaccio",
           "title": "Pizza Carpaccio Romana",
           "description": "Nuestra especialidad insigne sobre masa crujiente de alta hidratación: finas lascas de carpaccio de lomo de res, hojas de arúgula fresca, alcaparras crocantes, lascas de queso Parmigiano y toque cítrico artesanal.",
-          "image": "/images/dishes/sc-pizza-carpaccio.jpg",
+          "image": "/images/dishes/sc-pizza-carpaccio.webp",
           "badge": "Especialidad de la Casa",
           "reverse": false
         },
@@ -834,7 +834,7 @@ export const BRANDS: Record<BrandId, BrandData> = {
           "id": "sc-salmon",
           "title": "Pizza Rellena de Salmón & Philadelphia",
           "description": "Exclusiva creación de autor horneada con salmón ahumado de primera calidad, suave queso crema Philadelphia, láminas de aguacate fresco y arúgula silvestre sobre corteza dorada.",
-          "image": "/images/dishes/sc-pizza-rellena-salmon.jpg",
+          "image": "/images/dishes/sc-pizza-rellena-salmon.webp",
           "badge": "Creación Exclusiva",
           "reverse": true
         },
@@ -842,7 +842,7 @@ export const BRANDS: Record<BrandId, BrandData> = {
           "id": "sc-suppli-lasagna",
           "title": "Supplì al Telefono & Lasagna al Horno",
           "description": "El snack callejero por excelencia de Roma: croquetas crujientes de arroz al pomodoro rellenas de mozzarella fundida que estira como hilo de teléfono, junto a nuestra clásica lasagna horneada a la leña.",
-          "image": "/images/dishes/sc-suppli.jpg",
+          "image": "/images/dishes/sc-suppli.webp",
           "badge": "Street Food Romano",
           "reverse": false
         }
@@ -904,7 +904,7 @@ export const BRANDS: Record<BrandId, BrandData> = {
         "description": "Finas lascas de carpaccio de lomo sobre base crujiente romana, arúgula fresca, alcaparras fritas, parmigiano y limón.",
         "price": 125,
         "badge": "Especialidad Insigne",
-        "image": "/images/dishes/sc-pizza-carpaccio.jpg"
+        "image": "/images/dishes/sc-pizza-carpaccio.webp"
       },
       {
         "id": "sc-piz-compartir",
@@ -912,7 +912,7 @@ export const BRANDS: Record<BrandId, BrandData> = {
         "category": "Pizzas Clásicas",
         "description": "La reina de las pizzas: mozzarella fior di latte, pomodoro San Marzano y albahaca fresca en gran tamaño.",
         "price": 140,
-        "image": "/images/dishes/sc-pizzas-familiar-2.jpg",
+        "image": "/images/dishes/sc-pizzas-familiar-2.webp",
         "isVegetarian": true
       },
       {
@@ -922,7 +922,7 @@ export const BRANDS: Record<BrandId, BrandData> = {
         "description": "Pizza rellena crujiente con salmón ahumado selecto, queso philadelphia cremoso, aguacate en lascas y arúgula fresca.",
         "price": 130,
         "badge": "Creación de la Casa",
-        "image": "/images/dishes/sc-pizza-rellena-salmon.jpg"
+        "image": "/images/dishes/sc-pizza-rellena-salmon.webp"
       },
       {
         "id": "sc-cal-romano",
@@ -931,7 +931,7 @@ export const BRANDS: Record<BrandId, BrandData> = {
         "description": "Empanada gigante de masa madre doblada y sellada, rellena de ricotta fresca, mozzarella, prosciutto cotto y pimienta.",
         "price": 85,
         "badge": "Horno a 450°C",
-        "image": "/images/dishes/sc-pizza-horno.jpg"
+        "image": "/images/dishes/sc-pizza-horno.webp"
       },
       {
         "id": "sc-ent-suppli",
@@ -940,7 +940,7 @@ export const BRANDS: Record<BrandId, BrandData> = {
         "description": "Croquetas tradicionales romanas de arroz con pomodoro, rellenas de abundante mozzarella fundida y empanizado crujiente.",
         "price": 60,
         "badge": "100% Romano",
-        "image": "/images/dishes/sc-suppli.jpg",
+        "image": "/images/dishes/sc-suppli.webp",
         "isVegetarian": true
       },
       {
@@ -949,7 +949,7 @@ export const BRANDS: Record<BrandId, BrandData> = {
         "category": "Postres",
         "description": "Crema suave de mascarpone con café espresso y bizcochos soletilla tradicionales.",
         "price": 50,
-        "image": "/images/dishes/mr-postre.jpg",
+        "image": "/images/dishes/mr-postre.webp",
         "isVegetarian": true
       },
       {

@@ -56,28 +56,39 @@ export async function GET(
       // Not on local disk, proceed to Netlify Blobs
     }
 
-    // 2. Try serving from Netlify Blobs
+    // 2. Try serving from Netlify Blobs (with automatic extension fallback if .webp <-> .png/.jpg)
     const store = getNetlifyUploadsStore();
     if (store) {
-      try {
-        const blob = await store.getWithMetadata(safePath, { type: "arrayBuffer" });
-        if (blob && blob.data) {
-          const ext = path.extname(safePath).toLowerCase();
-          const contentType =
-            (blob.metadata?.contentType as string) ||
-            MIME_TYPES[ext] ||
-            "image/png";
+      const baseWithoutExt = safePath.replace(/\.(webp|png|jpg|jpeg)$/i, "");
+      const candidates = [
+        safePath,
+        `${baseWithoutExt}.webp`,
+        `${baseWithoutExt}.png`,
+        `${baseWithoutExt}.jpg`,
+        `${baseWithoutExt}.jpeg`,
+      ].filter((v, idx, arr) => arr.indexOf(v) === idx);
 
-          return new NextResponse(Buffer.from(blob.data), {
-            status: 200,
-            headers: {
-              "Content-Type": contentType,
-              "Cache-Control": "public, max-age=31536000, immutable",
-            },
-          });
+      for (const candidate of candidates) {
+        try {
+          const blob = await store.getWithMetadata(candidate, { type: "arrayBuffer" });
+          if (blob && blob.data) {
+            const ext = path.extname(candidate).toLowerCase();
+            const contentType =
+              (blob.metadata?.contentType as string) ||
+              MIME_TYPES[ext] ||
+              "image/png";
+
+            return new NextResponse(Buffer.from(blob.data), {
+              status: 200,
+              headers: {
+                "Content-Type": contentType,
+                "Cache-Control": "public, max-age=31536000, immutable",
+              },
+            });
+          }
+        } catch (blobErr) {
+          console.warn("Error retrieving from Netlify Blobs:", blobErr);
         }
-      } catch (blobErr) {
-        console.warn("Error retrieving from Netlify Blobs:", blobErr);
       }
     }
 

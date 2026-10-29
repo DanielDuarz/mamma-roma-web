@@ -15,7 +15,13 @@ export default function HeroSection() {
   const getCleanHeroUrl = React.useCallback(
     (url?: string) => {
       if (!url) return defaultFallbackHero;
-      if (url.startsWith("/images/uploads/") && url.endsWith(".png")) {
+      if (
+        url === "/images/uploads/mr_1791745657050_dsc03753-2.png" ||
+        url === "/images/uploads/mr_1791746810442_dsc08185.png" ||
+        url === "/images/uploads/mr_1791746814034_dsc08203.png" ||
+        url === "/images/uploads/mr_1791748254870_dsc08326-edit.png" ||
+        url === "/images/uploads/mr_1791755299023_dsc08326-edit.png"
+      ) {
         return url.replace(/\.png$/, ".webp");
       }
       return url;
